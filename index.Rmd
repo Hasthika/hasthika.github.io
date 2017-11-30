@@ -6,7 +6,6 @@ title: "Welcome!"
 <img src="./images/Alan.png" alt="Alan" align="left" hspace="20" style="width:80px;height:100px;">
 </figure>
  
-
 This website was last rendered on `r format(Sys.time(), "%A, %B %d, %Y - %X.")`
 
 
