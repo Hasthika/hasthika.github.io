@@ -7,7 +7,7 @@ title: "Welcome!"
 </figure>
 
 
-Need few thigs here
+I completed my PhD on August 2017 from the Department of mathematics at Southern Illinois University  Carbondale.  I earned my  Masters degree in Mathematics and Statistics on May 2013 from the Department of mathematics at Southern Illinois University  Carbondale. I joined  Appalachian State University right after my Ph.D. in 2017.
  
  
 This website was last rendered on `r format(Sys.time(), "%A, %B %d, %Y - %X.")`
