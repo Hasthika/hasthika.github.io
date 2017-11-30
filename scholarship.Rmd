@@ -1,17 +1,35 @@
 ---
-title: "Scholarship"
+title: "Research"
 output: html_document
 ---
 
-## Books 
+My research interests are in several different areas in Statistics. My main focus is on Robust Statistics & Bootstrapping. It can be extremely difficult to find the outliers in a multivariate setting and outliers can ruin the analysis. This led to research about Robust Multivariate Regression, Robust Discriminant Analysis and the one way MANOVA test. Bootstrap tests can be used to weaken assumptions such as a common covariance matrix. I am also interested in statistical learning (also known as machine learning).
 
 
-[_Probability and Statistics with R, Second Edition_](http://alanarnholt.github.io/PASWR2E-Book/)
+## Publications 
 
-[_Probability and Statistics with R_](http://www1.appstate.edu/~arnholta/PASWR/index.htm)
+* "Bootstrapping analogs of the Hotelling's $T^2$ test,"  Communications in Statistics Theory and Methods, Oct. 17, 2017 with Hasthika Rupasinghe.
 
-## Grant Work
+* "Visualizing and Testing the Multivariate Linear Regression Model," International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.
 
-* [USFS](https://github.com/alanarnholt/USFS)
+* "Bootstrapping analogs of the Hotelling's $T^2$ test,"" submitted, with David J Olive. 
+
+* "A Machine Learning Approach to Automate an Inertial Sensor Based Sprint Assessment Method,"   Work in progress, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
+
+* "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+
+* "Linear Model Fitting For  Undergraduate Students In Non-Statistics Disciplines,"   Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+
+
+* "Theoretical Sample Sizes for the CLT to Work for Several Distributions,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+
+
+
+
+
+## Grants
+
+* CAS Research/Proposal Development Summer Grant (Received)
+* Chancellor's Innovation Scholars Program (Applied)
 
 * * *
