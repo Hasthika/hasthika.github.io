@@ -5,11 +5,11 @@ title: "About"
 
 <figure>
 
-<img src="./images/lasNhas.jpg" alt="Lasanthi and Hasthika" align="left" hspace="20" style="width:100px;height:131px;">
+<img src="./images/lasNhas.jpg" alt="Lasanthi and Hasthika" align="left" hspace="20" style="width:120px;height:149px;">
 </figure>
 
 
-In 2010, I graduated from the [University of Sri Jayewardenpura Sri Lanka](http://www.sjp.ac.lk/) with a B.S. in the Mathematics (Special).  I started working as a temporary instructor at the Department od Mathematics at University of Sri Jayewardenpura and also as a visiting lecturer at Open University of Sri Lanka for a year after my graduation.
+In 2010, I graduated from the [University of Sri Jayewardenpura Sri Lanka](http://www.sjp.ac.lk/) with a B.S. in Mathematics (Special).  I started working as a temporary instructor at the Department od Mathematics at University of Sri Jayewardenpura and also as a visiting lecturer at Open University of Sri Lanka for a year after my graduation.
 
 I received an M.S. in Mathematics from the [Southern Illinois Univeristy](http://www.siu.edu) in 2013. I received the Ph.D. in Mathematics August 2017.  I joined the Department of [Mathematical Sciences](http://www.mathsci.appstate.edu) at [Appalachian State University](http://appstate.edu) in Fall 2017. I am married to Lasanthi Watagoda, who is a Visiting Assistant Professor of Statistics in the Department of [Mathematical Sciences.](http://www.mathsci.appstate.edu).
 
