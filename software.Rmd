@@ -18,8 +18,8 @@ output: html_document
 
 * [_Passion Driven Statistics_](https://alanarnholt.github.io/PDS-Bookdown2/)
 
-## Grant Work
+[//]: ## Grant Work
 
-* [USFS](https://github.com/alanarnholt/USFS)
+
 
 * * *
