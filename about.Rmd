@@ -5,7 +5,7 @@ title: "About"
 
 <figure>
 
-<img src="./images/lasNhas.jpg" alt="Lasanthi and Hasthika" align="left" hspace="20" style="width:120px;height:149px;">
+<img src="./images/lasNhas.jpg" alt="Lasanthi and Hasthika" align="left" hspace="20" style="width:120px;height:150px;">
 </figure>
 
 
