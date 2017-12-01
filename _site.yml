@@ -16,8 +16,7 @@ navbar:
       href: software.html
     - text: "Scholarship"
       href: scholarship.html
-    - text: "Cool Stuff"
-      href: coolstuff.html
+   
     
   right:
     - text: ""
