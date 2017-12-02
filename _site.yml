@@ -12,7 +12,7 @@ navbar:
   - text: Scholarship
     href: scholarship.html
   right:
-  - text: ''
+  - text: About me
     icon: glyphicon-info-sign
     href: about.html
   - icon: fa-github fa-lg
