@@ -13,5 +13,24 @@ In 2010, I graduated from the [University of Sri Jayewardenpura Sri Lanka](http:
 
 I received an M.S. in Mathematics from the [Southern Illinois Univeristy](http://www.siu.edu) in 2013. I received the Ph.D. in Mathematics August 2017.  I joined the Department of [Mathematical Sciences](http://www.mathsci.appstate.edu) at [Appalachian State University](http://appstate.edu) in Fall 2017. I am married to Lasanthi Watagoda, who is a Visiting Assistant Professor of Statistics in the Department of [Mathematical Sciences.](http://www.mathsci.appstate.edu).
 
+---
+
+Here are some pictures from Sri Lanka.
+
+<div style="text-align:center">
+<p float="center">
+  <img src="./images/SL1.jpg" width="400" />
+  <img src="./images/SL3.jpg" width="300" /> 
+
+</p>
+</div>
+
+<div style="text-align:center">
+<p float="center">
+  <img src="./images/SL2.png" width="250" />
+  <img src="./images/SL4.jpg" width="450" /> 
+
+</p>
+</div>
 
 * * * 

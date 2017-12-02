@@ -9,8 +9,9 @@ output: html_document
 ## Classes
 
 
-* [STT 3820]
-* [STT 2810]
+* [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/)
+* [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
+
 * [AsULearn](https://asulearn.appstate.edu/)
 * [Miscellaneous Statistics](https://alanarnholt.github.io/GeneralStatistics/)
 

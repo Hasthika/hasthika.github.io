@@ -13,6 +13,7 @@ My office is in 324 Walker Hall. Office hours for the Spring 2018 are TBA. Stude
 ```{r, echo = FALSE}
 df <- data.frame(Time = c("08:00-09:15", "09:30-10:45", "11:00-12:15", "12:15-02:15"), Monday = c("Research", "Research", "Research", "Research"), Tuesday = c("STT 2810 - 102", "STT 3851 - 101", "STT 2810 - 104", "Research"), Wednesday = c(" ", "Office", "Office", "Office"), Thursday = c("STT 2810 - 102", "STT 3851 - 101", "STT 2810 - 104", "Research"), Friday = c("Research", "Research", "Research", "Research"))
 knitr::kable(df, align = c("c","c","c","c","c","c"))
+
 ```
 
 
@@ -29,14 +30,14 @@ library(dplyr)
 ```
 
 Use the leaflet map below to find Walker Hall. 
-
+<div style="text-align:center">
 ```{r, echo = FALSE}
 leaflet() %>%
   setView(lng=-81.684954, lat=36.216777, zoom = 16) %>% 
   addTiles() %>%
   addMarkers(lng=-81.684954, lat=36.216777, popup="Walker Hall") 
 ```
-
+</div>
 ## Important Dates and Times
 
 - [Academic calendar](https://registrar.appstate.edu/calendars-schedules/academic-calendar) <i class="fa fa-calendar"></i>
