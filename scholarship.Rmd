@@ -5,6 +5,11 @@ output: html_document
 
 My research interests are in several different areas in Statistics. My main focus is on Robust Statistics & Bootstrapping. It can be extremely difficult to find the outliers in a multivariate setting and outliers can ruin the analysis. This led to research about Robust Multivariate Regression, Robust Discriminant Analysis and the one way MANOVA test. Bootstrap tests can be used to weaken assumptions such as a common covariance matrix. I am also interested in statistical learning (also known as machine learning).
 
+## Grants
+
+* CAS Research/Proposal Development Summer Grant (Received)
+* Chancellor's Innovation Scholars Program (Applied)
+
 
 ## Publications 
 
@@ -12,7 +17,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "Visualizing and Testing the Multivariate Linear Regression Model," International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.
 
-* "Bootstrapping analogs of the Hotelling's $T^2$ test,"" submitted, with David J Olive. 
+* "Bootstrapping analogs of the One-Way MANOVA test," submitted, with David J Olive. 
 
 * "A Machine Learning Approach to Automate an Inertial Sensor Based Sprint Assessment Method,"   Work in progress, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
 
@@ -27,9 +32,6 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 
-## Grants
 
-* CAS Research/Proposal Development Summer Grant (Received)
-* Chancellor's Innovation Scholars Program (Applied)
 
 * * *
