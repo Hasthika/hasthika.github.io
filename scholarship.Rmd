@@ -29,7 +29,20 @@ My research interests are in several different areas in Statistics. My main focu
 * "Theoretical Sample Sizes for the CLT to Work for Several Distributions,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
 
+## Conference talks
 
+* April 2017: Southern Illinois University, "Bootstrapping analogs of the one way MANOVA test", Invited Talk.  [Presentation Slides](http://lagrange.math.siu.edu/Olive/sHTalk.pdf)
+
+* Nov. 2016: Appalachian State University, "Teaching Statistical Inference", Talk. 
+
+* Oct. 2016: Women in Statistics & Data Science, Attended. 
+Oct. 2016: SIAM Central States Section, "Bootstrapping analogs of the Hotteling’s $T^2$ test", Talk. 
+
+* Nov. 2015: Lloyd Roeling UL Lafayette Conference: Statistics, "Bootstrapping analogs of the Hotteling’s $T^2$ test", Talk. 
+
+* April 2015: International Conference on Robust Rank-Based and Nonparametric Methods, Western Michigan University, "Visualizing and Testing the Multivariate Linear Regression Model", Poster. 
+
+* April 2015: Presented a poster in Southern Illinois University, Graduate Research Conference, "Visualizing and Testing the Multivariate Linear Regression Model", Poster. 
 
 
 
