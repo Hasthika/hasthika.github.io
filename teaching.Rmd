@@ -15,5 +15,9 @@ output: html_document
 * [AsULearn](https://asulearn.appstate.edu/)
 * [Miscellaneous Statistics](https://alanarnholt.github.io/GeneralStatistics/)
 
+## Steps Toward Success
+
+* Click [here](StepsTowardsSuccess.html)
+
 
 * * *
