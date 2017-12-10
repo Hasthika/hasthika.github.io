@@ -1,5 +1,5 @@
 name: hasthika.github.io
-output_dir: .
+output_dir: 
 navbar:
   title: Hasthika Rupasinghe
   left:
@@ -11,6 +11,7 @@ navbar:
     href: teaching.html
   - text: Scholarship
     href: scholarship.html
+  
   right:
   - text: About me
     icon: glyphicon-info-sign
