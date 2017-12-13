@@ -1,19 +1,19 @@
-name: hasthika.github.io
-output_dir: 
+name: "hasthika.github.io"
+output_dir: "."
 navbar:
-  title: Hasthika Rupasinghe
+  title: "Hasthika Rupasinghe"
   left:
-  - text: For Students
+  - text: "For Students"
     href: for-students.html
-  - text: Resources
+  - text: "Resources"
     href: resources.html
-  - text: Teaching
+  - text: "Teaching"
     href: teaching.html
-  - text: Scholarship
+  - text: "Scholarship"
     href: scholarship.html
   
   right:
-  - text: About me
+  - text: "About me"
     icon: glyphicon-info-sign
     href: about.html
   - icon: fa-github fa-lg
