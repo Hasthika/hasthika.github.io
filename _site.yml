@@ -11,6 +11,8 @@ navbar:
     href: teaching.html
   - text: "Scholarship"
     href: scholarship.html
+  - text: "Online Tutoring"
+    href: OnlineTutoring.html
   
   right:
   - text: "About me"
