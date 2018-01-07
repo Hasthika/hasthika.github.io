@@ -12,11 +12,11 @@ Check out how to start and the tutoring schedule for Spring 2018 below.
 
 
 
-## How to Start?
-1. Click on the relevent tutoring session's link in the 'Online Tutoring Schedule' below.
-2. "Allow" zoom.us to open.
+## **How to Start?**
+1. Click on the relevent tutoring session's link in the *Online Tutoring Schedule* below.
+2. **"Allow"** zoom.us to open.
 3. If you are a first time zoom user, you may need to install zoom in this step.
-4. Click "Join" in the Zoom - Pro Account window.
+4. Click **"Join"** in the Zoom - Pro Account window.
 
 <div style="text-align:center">
 <p float="center">
@@ -39,7 +39,9 @@ Check out how to start and the tutoring schedule for Spring 2018 below.
 
 Note: If your tutor is online, step 1 should take you directly to the "whiteboard".
 
-## Online Tutoring Schedule
+
+
+## **Online Tutoring Schedule**
 
 1. [TEST 101](https://appstate.zoom.us/j/569840173)(Tuesday 7 pm---9 pm) ---  Turor: Alex Martin
 
