@@ -31,18 +31,31 @@ My research interests are in several different areas in Statistics. My main focu
 
 ## Conference talks
 
-* April 2017: Southern Illinois University, "Bootstrapping analogs of the one way MANOVA test", Invited Talk.  [Presentation Slides](http://lagrange.math.siu.edu/Olive/sHTalk.pdf)
+* Joint Mathematics Meetings, "Bootstrapping analogs of the one way MANOVA test", January 2018, Contributed Talk
 
-* Nov. 2016: Appalachian State University, "Teaching Statistical Inference", Talk. 
+* Statistics Group Meeting, "Introduction to Overleaf: A collaborative real time LaTeX writing tool", October 2017, Contributed Talk
 
-* Oct. 2016: Women in Statistics & Data Science, Attended. 
-Oct. 2016: SIAM Central States Section, "Bootstrapping analogs of the Hotteling’s $T^2$ test", Talk. 
+* A Workshop in Developing Effective Learning Practices --- Appalachian State University, September 2017, Attended
 
-* Nov. 2015: Lloyd Roeling UL Lafayette Conference: Statistics, "Bootstrapping analogs of the Hotteling’s $T^2$ test", Talk. 
+* Datarobot Workshop in Machine Learning --- Appalachian State University, August 2017, Attended
 
-* April 2015: International Conference on Robust Rank-Based and Nonparametric Methods, Western Michigan University, "Visualizing and Testing the Multivariate Linear Regression Model", Poster. 
+* Southern Illinois University, "Bootstrapping analogs of the one way MANOVA test", April 2017, Invited Talk [Presentation Slides](http://lagrange.math.siu.edu/Olive/sHTalk.pdf)
 
-* April 2015: Presented a poster in Southern Illinois University, Graduate Research Conference, "Visualizing and Testing the Multivariate Linear Regression Model", Poster. 
+* Joint Mathematics Meetings, "Bootstrapping analogs of the Hotteling's $T^2$ test", January 2017, Contributed Talk
+
+* Appalachian State University, "Teaching Statistical Inference", November 2016, Invited Talk
+
+* Appalachian State University, "Bootstrapping analogs of the Hotteling's $T^2$ test", November 2016, Contributed Talk
+
+* Women in Statistics \& Data Science, October 2016, Attended
+
+* SIAM Central States Section, "Bootstrapping analogs of the Hotteling's $T^2$ test", October 2016, Contributed Talk
+
+* Lloyd Roeling UL Lafayette Conference: Statistics, "Bootstrapping analogs of the Hotteling's $T^2$ test", November 2015, Contributed Talk
+
+* International Conference on Robust Rank-Based and Nonparametric Methods, Western Michigan University, "Visualizing and Testing the Multivariate Linear Regression Model", April 2015, Poster Presentation
+
+* Presented a poster in Southern Illinois University, Graduate Research Conference, "Visualizing and Testing the Multivariate Linear Regression Model", April 2015, Poster Presentation
 
 
 
