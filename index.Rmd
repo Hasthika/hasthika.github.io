@@ -3,7 +3,7 @@ title: "Welcome!"
 ---
 
 <figure>
-<img src="./images/webpic.png" alt="Hasthika" align="left" hspace="20" style="width:80px;height:100px;">
+<img src="./images/Hasthika.jpg" alt="Hasthika" align="left" hspace="20" style="width:125px;height:150px;">
 </figure>
 
 
