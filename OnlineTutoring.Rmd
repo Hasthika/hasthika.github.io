@@ -4,16 +4,36 @@ author: ""
 date: ""
 output: html_document
 ---
+
 Note: This page is still under construction.
 
-Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in these selected courses.
+Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in *MAT 1025 -- Pre-Calculus*.
 
 Check out how to start and the tutoring schedule for Spring 2018 below. 
 
+## **Online Tutoring Schedule for MAT 1025 -- Pre-Calculus**
+
+
+Please clik on the relevent link to start.
+
+* [Monday 8PM - 9PM: **Tutor -- Will**](https://appstate.zoom.us/j/147576949)
+* [Tuesday 8PM - 9PM: **Tutor --Charlotte**](https://appstate.zoom.us/j/477168258)
+* [Wednesday 8PM - 9PM: **Tutor -- Coleman**](https://appstate.zoom.us/j/432634152)
+* [Thursday 8PM - 9PM: **Tutor -- Will**](https://appstate.zoom.us/j/734779104)
+
+
+
+<!--
+```{r, echo = FALSE}
+df <- data.frame( Time = c("8:00 PM - 9:00 PM"), Monday = c("Tutor - Will"), Tuesday = c("Tutor - Charlotte"), Wednesday = c("Tutor - Coleman"), Thursday = c("Tutor - Will"))
+knitr::kable(df, align = c("l","l","l","l","l"))
+
+```
+-->
 
 
 ## **How to Start?**
-1. Click on the relevent tutoring session's link in the *Online Tutoring Schedule* below.
+1. Click on the relevent tutoring session's link in the *Online Tutoring Schedule* above.
 2. **"Allow"** zoom.us to open.
 3. If you are a first time zoom user, you may need to install zoom in this step.
 4. Click **"Join"** in the Zoom - Pro Account window.
@@ -40,10 +60,6 @@ Check out how to start and the tutoring schedule for Spring 2018 below.
 Note: If your tutor is online, step 1 should take you directly to the "whiteboard".
 
 
-
-## **Online Tutoring Schedule**
-
-1. [MAT 1025 -- Pre-Calculus](https://appstate.zoom.us/j/569840173) (Tuesday 7 pm---9 pm) ---  Turor: Alex Martin
 
 
 
