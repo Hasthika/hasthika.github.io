@@ -1,5 +1,5 @@
 ---
-title: "**Welcome to ***e****MathLab* (FREE Online Tutoring)**"
+title: 
 output: 
   html_document:
     toc: true
@@ -7,7 +7,7 @@ output:
       collapsed: false
   
 ---
-
+## ***e*<span style="color:gold">MathLab</span> (FREE Online Tutoring)**
 Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in <span style="color:navy">**MAT 1025 -- Pre-Calculus**</span>.
 
 Check out how to start and the tutoring schedule for Spring 2018 below. 
