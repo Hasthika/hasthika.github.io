@@ -1,5 +1,5 @@
 ---
-title: "**Welcome to FREE Online Tutoring**"
+title: "**Welcome to ***e****MathLab* (FREE Online Tutoring)**"
 author: ""
 date: ""
 output: html_document
