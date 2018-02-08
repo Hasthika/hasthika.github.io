@@ -1,11 +1,9 @@
 ---
-title: "Welcome to FREE Online Tutoring"
+title: "**Welcome to FREE Online Tutoring**"
 author: ""
 date: ""
 output: html_document
 ---
-
-Note: This page is still under construction.
 
 Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in *MAT 1025 -- Pre-Calculus*.
 
@@ -60,8 +58,9 @@ knitr::kable(df, align = c("l","l","l","l","l"))
 Note: If your tutor is online, step 1 should take you directly to the "whiteboard".
 
 
+## **Rate Us**
 
-
+Please click [here](https://form.jotform.com/80378947441163) to rate our service.
 
 ***
 
