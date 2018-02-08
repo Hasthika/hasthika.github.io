@@ -8,7 +8,7 @@ output:
   
 ---
 
-Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in **MAT 1025 -- Pre-Calculus**.
+Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in <span style="color:navy">**MAT 1025 -- Pre-Calculus**</span>.
 
 Check out how to start and the tutoring schedule for Spring 2018 below. 
 
@@ -18,7 +18,7 @@ Check out how to start and the tutoring schedule for Spring 2018 below.
 Please clik on the relevent link to start.
 
 * [Monday 8PM - 9PM: **Tutor -- Will**](https://appstate.zoom.us/j/147576949)
-* [Tuesday 8PM - 9PM: **Tutor --Charlotte**](https://appstate.zoom.us/j/477168258)
+* [Tuesday 8PM - 9PM: **Tutor -- Charlotte**](https://appstate.zoom.us/j/477168258)
 * [Wednesday 8PM - 9PM: **Tutor -- Coleman**](https://appstate.zoom.us/j/432634152)
 * [Thursday 8PM - 9PM: **Tutor -- Will**](https://appstate.zoom.us/j/734779104)
 
