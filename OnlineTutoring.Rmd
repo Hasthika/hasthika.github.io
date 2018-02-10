@@ -15,10 +15,14 @@ output:
 
 ## ***e*<span style="color:gold">MathLab</span> (FREE Online Tutoring)**
 
-<figure>
 
-<img src="./images/logo.png" alt="" align="center" hspace="20" style="width:1200px;height:100px;">
-</figure>
+
+<div style="text-align:center">
+<p float="center">
+  <img src="./images/logo.png" width="400" />
+
+</p>
+</div>
 
 
 Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in <span style="color:navy">**MAT 1025 -- Pre-Calculus**</span>.
