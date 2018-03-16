@@ -26,7 +26,9 @@ My research interests are in several different areas in Statistics. My main focu
 * "Linear Model Fitting For  Undergraduate Students In Non-Statistics Disciplines,"   Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
 
-* "Theoretical Sample Sizes for the CLT to Work for Several Distributions,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+* "Theoretical Sample Sizes for the CLT to Work for Several Distributions,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda.
+
+* "A Relationship Between One-Way MANOVA Test Statistic and the Hotelling Lawley Trace Test Statistic," Work in progress.
 
 
 ## Conference talks
