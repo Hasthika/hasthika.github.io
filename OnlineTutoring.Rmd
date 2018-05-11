@@ -24,8 +24,9 @@ output:
 </p>
 </div>
 
+**Online Tutoring is not abaible during Summer 2018. We will be back in Fall 2018.**
 
-Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for the first time. This is a free service for the students enrolled in <span style="color:navy">**MAT 1025 -- Pre-Calculus**</span>.
+Department of Mathematical Sciences at Appalachian State University is excited to offer online tutoring for MAT1025. This is a free service for the students enrolled in <span style="color:navy">**MAT 1025 -- Pre-Calculus**</span>.
 
 Check out how to start and the tutoring schedule for Spring 2018 below. 
 
