@@ -29,12 +29,16 @@ Department of Mathematical Sciences at Appalachian State University is excited t
 
 Check out how to start and the tutoring schedule for Fall 2018 below. 
 
+
 ## **Online Tutoring Schedule**
 
 
 Please clik on the relevent link to start.
 
+
 ---
+
+<h1 style="text-align: center;" markdown="1">
 
 * [Tuesday 8PM - 11PM: **Tutor -- Charlotte**](https://appstate.zoom.us/j/477168258)
 
@@ -42,7 +46,12 @@ Please clik on the relevent link to start.
 
 * [Thursday 8PM - 11PM: **Tutor -- Kaitlyn Burkett**](https://appstate.zoom.us/j/734779104)
 
+</h1>
+
 ---
+
+
+
 
 
 <!--
