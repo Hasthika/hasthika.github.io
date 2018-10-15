@@ -12,6 +12,11 @@ output: html_document
 * [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/)
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
 
+
+## Classes Spring 2019
+
+* [STT 3850 --- Statistical Data Analysis I]
+
 * [AsULearn](https://asulearn.appstate.edu/)
 * [Miscellaneous Statistics](https://alanarnholt.github.io/GeneralStatistics/)
 
