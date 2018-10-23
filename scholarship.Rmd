@@ -13,7 +13,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 ## Publications 
-* "[Bootstrapping analogs of the One-Way MANOVA test,](http://lagrange.math.siu.edu/Olive/ppmanova.pdf)" to appear, Communication in Statistics Theory and Methods, with David J Olive. 
+* "[Bootstrapping analogs of the One-Way MANOVA test,](https://www.tandfonline.com/doi/full/10.1080/03610926.2018.1515363)" to appear, Communication in Statistics Theory and Methods, with David J Olive. 
 
 * "[A Relationship Between One-Way MANOVA Test Statistic and the Hotelling Lawley Trace Test Statistic,](http://www.ccsenet.org/journal/index.php/ijsp/article/view/0/37171)" Vol. 7, No. 6, 2018, International Journal of Statistics and Probability.
 
