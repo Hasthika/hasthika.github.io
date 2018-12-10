@@ -24,7 +24,7 @@ My research interests are in several different areas in Statistics. My main focu
 * "Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution" to appear, Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
 
 
-* "A Machine Learning Approach to Automate an Inertial Sensor Based Sprint Assessment Method," Under Review, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
+* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
 
 * "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
