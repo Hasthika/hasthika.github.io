@@ -13,7 +13,8 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 ## Publications 
-* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
+* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt, Herman van Werkhoven, Alan Needle, Jeffrey M. McBride. 
+
 
 * "[Bootstrapping analogs of the One-Way MANOVA test,](https://www.tandfonline.com/doi/full/10.1080/03610926.2018.1515363)" to appear, Communication in Statistics Theory and Methods, with David J Olive. 
 
