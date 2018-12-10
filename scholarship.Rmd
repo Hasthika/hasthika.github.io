@@ -13,6 +13,8 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 ## Publications 
+* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
+
 * "[Bootstrapping analogs of the One-Way MANOVA test,](https://www.tandfonline.com/doi/full/10.1080/03610926.2018.1515363)" to appear, Communication in Statistics Theory and Methods, with David J Olive. 
 
 * "[A Relationship Between One-Way MANOVA Test Statistic and the Hotelling Lawley Trace Test Statistic,](http://www.ccsenet.org/journal/index.php/ijsp/article/view/0/37171)" Vol. 7, No. 6, 2018, International Journal of Statistics and Probability.
@@ -23,8 +25,6 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution" to appear, Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
 
-
-* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt. 
 
 * "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
