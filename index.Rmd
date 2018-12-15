@@ -8,12 +8,21 @@ title: "Welcome!"
 
 
 <figure>
-<img src="./images/data-word-cloud.jpg" alt="Hasthika" align="center" hspace="20" style="width:450px;height:150px;">
+<img src="./images/data-word-cloud.png" alt="Hasthika" align="center" hspace="20" style="width:550px;height:150px;">
 </figure>
 
+<br /> 
 
-I completed my PhD on August 2017 from the Department of mathematics at Southern Illinois University  Carbondale.  I earned my  Masters degree in Mathematics and Statistics on May 2013 from the Department of mathematics at Southern Illinois University  Carbondale. I joined  Appalachian State University right after my Ph.D. in 2017.
- 
+With the explosion of “Big Data” problems, statistical learning has become a very hot field in many scientific areas as well as marketing, finance, and other business disciplines. People with statistical learning skills are in high demand.
+    -- *Trevor Hastie and Robert Tibshirani in their book ISLR.*
+    
+**My research interests:** 
+
+    * Statistical Learning 
+    * Regression
+    * Robust Statistics
+    * Bootstrapping
+    * Reproducible research
  
 *This website was last rendered on `r format(Sys.time(), "%A, %B %d, %Y - %X.")`*
 
