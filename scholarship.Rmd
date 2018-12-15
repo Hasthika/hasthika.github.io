@@ -22,9 +22,9 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "[Bootstrapping analogs of the Hotelling's $T^2$ test,](http://www.tandfonline.com/doi/abs/10.1080/03610926.2017.1337146?journalCode=lsta20)"  Communications in Statistics Theory and Methods, Oct. 17, 2017 with Lasanthi Watagoda.
 
-* "[Visualizing and Testing the Multivariate Linear Regression Model,](http://www.ccsenet.org/journal/index.php/ijsp/article/view/43460)" International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.
-
 * "Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution" to appear, Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
+
+* "[Visualizing and Testing the Multivariate Linear Regression Model,](http://www.ccsenet.org/journal/index.php/ijsp/article/view/43460)" International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.
 
 
 * "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
