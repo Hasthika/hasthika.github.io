@@ -8,7 +8,7 @@ title: "Welcome!"
 
 
 <figure>
-<img src="./images/data-word-cloud.png" alt="Hasthika" align="center" hspace="20" style="width:580px;height:150px;">
+<img src="./images/data-word-cloud.png" alt="Hasthika" align="right" hspace="20" style="width:550px;height:150px;">
 </figure>
 
 <br /> 
