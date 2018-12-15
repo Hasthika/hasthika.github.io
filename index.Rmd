@@ -7,6 +7,11 @@ title: "Welcome!"
 </figure>
 
 
+<figure>
+<img src="./images/data-word-cloud.jpg" alt="Hasthika" align="center" hspace="20" style="width:450px;height:150px;">
+</figure>
+
+
 I completed my PhD on August 2017 from the Department of mathematics at Southern Illinois University  Carbondale.  I earned my  Masters degree in Mathematics and Statistics on May 2013 from the Department of mathematics at Southern Illinois University  Carbondale. I joined  Appalachian State University right after my Ph.D. in 2017.
  
  
