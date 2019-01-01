@@ -32,6 +32,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### *Why is it important to take notes in class?*
 
+
+<figure>
+<img src="./images/tenor.gif" alt="Hasthika" align="left" hspace="20" style="width:125px;height:150px;">
+</figure>
+
+
 1. Clear and organized notes will help you identify the core  ideas in the lecture.
 
 2. A permanent record will help you to learn and remember later.
