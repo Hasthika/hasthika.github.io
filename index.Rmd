@@ -2,8 +2,6 @@
 title: "Welcome!"
 ---
 
-<link rel="shortcut icon" href="https://www.r-project.org/favicon-32x32.png">
-
 <figure>
 <img src="./images/Hasthika.jpg" alt="Hasthika" align="left" hspace="20" style="width:125px;height:150px;">
 </figure>
