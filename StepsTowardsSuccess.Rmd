@@ -37,6 +37,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <img src="./images/tenor.gif" alt="takeNotes" align="center" hspace="20" style="width:125px;height:150px;">
 </figure>
 
+
 <br />
 
 1. Clear and organized notes will help you identify the core  ideas in the lecture.
