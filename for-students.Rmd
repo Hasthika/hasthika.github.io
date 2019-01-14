@@ -11,7 +11,7 @@ output:
 My office is in 324 Walker Hall. Office hours for the Spring 2019 are listed below. Students may click on [book now](https://hasthika.youcanbook.me/) to schedule an appointment.
 
 ```{r, echo = FALSE}
-df <- data.frame(Time = c("08:00-09:15", "09:30-10:45", "11:00-12:00", "12:00-01:00","01:00-2:00",""), Monday = c("Research", "Research", "Lunch", "Research", "Research", ""), Tuesday = c("3850	101", "3850	102", "Lunch", "Office", "Office", ""),  Wednesday =  c("3850	101", "3850	102", "Lunch", "Office", "Prep", ""), Thurdsay =  c("3850	101", "3850	102", "Lunch", "Office", "", ""))
+df <- data.frame(Time = c("08:00-09:15", "09:30-10:45", "11:00-12:00", "12:00-01:00","01:00-2:00",""), Monday = c("Research", "Research", "Lunch", "Research", "Research", ""), Tuesday = c("3850	101", "3850	102", "Lunch", "Office", "Office", ""),  Wednesday =  c("3850	101", "3850	102", "Lunch", "Prep", "Prep", ""), Thurdsay =  c("3850	101", "3850	102", "Lunch", "Office", "Office", ""))
 knitr::kable(df, align = c("c","c","c","c","c","c"))
 
 ```
