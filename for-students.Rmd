@@ -40,6 +40,7 @@ leaflet() %>%
   setView(lng=-81.684954, lat=36.216777, zoom = 16) %>% 
   addTiles() %>%
   addMarkers(lng=-81.684954, lat=36.216777, popup="Walker Hall") 
+
 ```
 
 
