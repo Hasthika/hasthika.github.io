@@ -14,6 +14,9 @@ My research interests are in several different areas in Statistics. My main focu
 
 ## Publications 
 
+
+* "An Approximation to the Skew--Normal Distribution,"  Under review, with Joel Sanqui, Lasanthi Watagoda. 
+
 * "[Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution,](http://www.seio.es/BBEIO/BEIOVol34Num3/files/assets/basic-html/page-16.html)" Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
 
 * "Sprint Assessment using Machine Learning and a Wearable Accelerometer," to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt, Herman van Werkhoven, Alan Needle, Jeffrey M. McBride. 
@@ -32,7 +35,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "A Unified Introduction to Predictive Model Building for Undergraduate Researchers,"   Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
-* "An Approximation to the Skew--Normal Distribution,"   Work in progress, with Joel Sanqui, Lasanthi Watagoda. 
+
 
 
 
