@@ -40,6 +40,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 ## Conference talks
+* Joint Mathematics Meetings, "A new regularization and variable selection technique - HRLR", January 2019, Contributed Talk
 
 * Joint Mathematics Meetings, "Bootstrapping analogs of the one way MANOVA test", January 2018, Contributed Talk
 
