@@ -19,7 +19,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "[Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution,](http://www.seio.es/BBEIO/BEIOVol34Num3/files/assets/basic-html/page-16.html)" Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
 
-* "Sprint Assessment using Machine Learning and a Wearable Accelerometer," to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt, Herman van Werkhoven, Alan Needle, Jeffrey M. McBride. 
+* "[Sprint Assessment using Machine Learning and a Wearable Accelerometer,](https://www.ncbi.nlm.nih.gov/pubmed/30676153)" to appear, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt, Herman van Werkhoven, Alan Needle, Jeffrey M. McBride. 
 
 
 * "[Bootstrapping analogs of the One-Way MANOVA test,](https://www.tandfonline.com/doi/full/10.1080/03610926.2018.1515363)" to appear, Communication in Statistics Theory and Methods, with David J Olive. 
