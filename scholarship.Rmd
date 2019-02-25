@@ -14,6 +14,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 ## Publications 
 
+* "A Unified Introduction to Predictive Model Building for Undergraduate Researchers,"   Under review, with Alan Arnholt, Lasanthi Watagoda. 
 
 * "An Approximation to the Skew--Normal Distribution,"  Under review, with Joel Sanqui, Lasanthi Watagoda. 
 
@@ -33,7 +34,7 @@ My research interests are in several different areas in Statistics. My main focu
 
 * "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
-* "A Unified Introduction to Predictive Model Building for Undergraduate Researchers,"   Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+
 
 
 
