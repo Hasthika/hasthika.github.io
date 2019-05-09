@@ -5,14 +5,18 @@ output: html_document
 
 <i class="glyphicon glyphicon-star"></i> This page will serve as a directory for courses from Fall 2017 forward. <i class="glyphicon glyphicon-thumbs-up"></i>
 
-## Classes --- Spring 2019
+## Classes --- Fall 2019
 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
+## Future Classes
+
+* [STT 3250 --- Probability]()
+* [STT 4840 --- Time Series Forecasting]()
 
 ## Classes taught
 
-
+* [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 * [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/)
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
 
