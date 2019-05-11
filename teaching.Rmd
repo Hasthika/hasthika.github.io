@@ -9,7 +9,7 @@ output: html_document
 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
-## Future Classes
+## Future (Spring & Fall 2020) Classes
 
 * [STT 3250 --- Probability]()
 * [STT 4840 --- Time Series Forecasting]()
