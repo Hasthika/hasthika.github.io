@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -89,7 +90,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -250,48 +250,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -340,8 +301,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -448,13 +407,13 @@ div.tocify {
 <h2><strong>Online Tutoring Schedule</strong></h2>
 <p>Please clik on the relevent link to start…</p>
 <blockquote>
-<p>Note: We are gone for the Summer! Online Tutoring will be back Fall 2019</p>
+<p>Note: We will be starting the service from next Tuesday</p>
 </blockquote>
 <hr />
 <ul>
-<li><p><a href="https://appstate.zoom.us/j/601764138">Tuesday 8PM - 11PM: <strong>Tutor – Kaitlyn Burkett</strong></a></p></li>
-<li><p><a href="https://appstate.zoom.us/j/381199367">Wednesday 8PM - 11PM: <strong>Tutor – Audrey Holloman</strong></a></p></li>
-<li><p><a href="https://appstate.zoom.us/j/523857744">Thursday 8PM - 11PM: <strong>Tutor – Catherine Allred</strong></a></p></li>
+<li><p><a href="https://appstate.zoom.us/j/219778170">Tuesday 8PM - 11PM: <strong>Tutor – Catherine Allred</strong></a></p></li>
+<li><p><a href="https://appstate.zoom.us/j/481795970">Wednesday 8PM - 11PM: <strong>Tutor – Brandon Chauncey</strong></a></p></li>
+<li><p><a href="https://appstate.zoom.us/j/639205657">Thursday 8PM - 11PM: <strong>Tutor – Eloisa Sanchez</strong></a></p></li>
 </ul>
 <hr />
 <!--
@@ -534,6 +493,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
