@@ -1,0 +1,183 @@
+shorth3<-function(y, alpha = 0.05){
+  # computes the shorth(c) interval [Ln,Un] for c = cc.
+  #shorth lists Ln and Un using Frey's correction
+  n <- length(y)
+  cc <- ceiling(n * (1 - alpha + 1.12*sqrt(alpha/n)))
+  cc <- min(n,cc)
+  sy <- sort(y)
+  rup <- sy[cc]
+  rlow <- sy[1]
+  olen <- rup - rlow
+  if(cc < n){
+    for(j in (cc + 1):n){
+      zlen <- sy[j] - sy[j - cc + 1]
+      if(zlen < olen) {
+        olen <- zlen
+        rup <- sy[j]
+        rlow <- sy[j - cc + 1]
+      }
+    }
+  } 
+  Ln <- rlow; Un <- rup
+  list(shorth=c(Ln, Un))
+}
+
+# this function simulates the Second prediction interval.
+# changing the mean to min will give the First prediction interval.
+
+pi1and2sim<-function(n = 100, p = 4, k = 1, nruns = 100, eps = 0.1, shift = 9, psi = 0.0, type = 1, alpha = 0.05, nb = 100){
+  #Needs library(leaps).  
+  #EBIC or min Cp: Pelawa Watagoda and Olive (2019) validation residuals PI
+  #and split conformal PI
+  #Simulates PIs for forward selection variable selection. 
+  #Needs p > 2. 
+  # 1 <= k <= p-1, k is the number of nonnoise variables
+  #Uses five iid error distributions: 
+  # type = 1 for N(0,1) errors, 2 for t3 errors, 3 for exp(1) - 1 errors
+  #4 for uniform(-1,1) errors, 5 for (1-eps) N(0,1) + eps N(0,(1+shift)^2) 
+  #errors.
+  # constant = 1 so there are p = q+1 coefficients
+  #need p > 1, beta = (1, 1, ..., 1, 0, ..., 0) with k+1 ones, p-k-1  zeroes
+  # Multiply x by A: for MVN data this results
+  # in a covariance matrix with eigenvector c(1, ..., 1)^T
+  # corresponding to the largest eigenvalue. As psi gets
+  # close to 1, the data clusters about the line in the
+  # direction of (1, ..., 1)^T. See Maronna and Zamar (2002).
+  # cor(X_i,X_j) = [2 psi +(q-2)psi^2]/[1 + (q-1)psi^2], i not = j
+  # when the correlation exists.
+  set.seed(974)  
+  pilen <- 1:nruns
+  ps <- pilen
+  opicov <- 0
+  splitpilen <- pilen
+  splitpicov <- 0
+  q <- p-1
+  vmax <- min(p,as.integer(n/5))
+  rho <- (2*psi + (q-2)*psi^2)/(1 + (q-1)*psi^2)
+  A <- matrix(psi,nrow=q,ncol=q)
+  diag(A) <- 1
+  b <- 0 * 1:q
+  b[1:k] <- 1 #b[1:0] acts like b[1:1] = b[1]
+  vars <- as.vector(1:(p-1))
+  indx <- 1:n
+  nH <- ceiling(n/2)
+  
+  
+  for(i in 1:nruns) {
+    x <- matrix(rnorm(n * q), nrow = n, ncol = q)
+    x <- x %*% A
+    xf <- rnorm(q) %*% A
+    if(type == 1) {
+      y <- 1 + x %*% b + rnorm(n)
+      yf <- 1 + xf %*% b + rnorm(1)
+    }
+    if(type == 2) {
+      y <- 1 + x %*% b + rt(n, df = 3)
+      yf <- 1 + xf %*% b + rt(1, df = 3)
+    }
+    if(type == 3) {
+      y <- 1 + x %*% b + rexp(n) - 1
+      yf <- 1 + xf %*% b + rexp(1) - 1
+    }
+    if(type == 4) {
+      y <- 1 + x %*% b + runif(n, min = -1, max = 1)
+      yf <- 1 + xf %*% b + runif(1, min = -1, max = 1)
+    }
+    if(type == 5) {
+      err <- rnorm(n, sd = 1 + rbinom(n, 1, eps) * shift)
+      y <- 1 + x %*% b + err
+      ef <- rnorm(1, sd = 1 + rbinom(1, 1, eps) * shift)
+      yf <- 1 + xf %*% b + ef
+    } #make an MLR data set
+    
+    
+    #find sets H and V
+    perm <- sample(indx,n)
+    H <- perm[1:nH]
+    xH <- x[H,]
+    yH <- y[H]
+    xV <- x[-H,]
+    yV <- y[-H]
+    
+    #find the forward sel minimum Cp or EBIC model on the training half set H
+    tem<-regsubsets(xH,yH,nvmax=vmax,method="forward")
+    out<-summary(tem)
+    if(nH < 10*p) {
+      xx <- 1:min(length(out$bic),p-1)+1
+      ebic <- out$bic+2*(-lgamma(xx+1)-lgamma(p-xx+1))
+      minebic <- out$which[ebic==min(ebic),]
+      #do not need the constant in vin
+      vin <- vars[minebic[-1]]                
+    } #if nH >= 10p use min Cp model
+    else {  mincp <- out$which[out$cp==min(out$cp),]             
+    #do not need the constant in vin
+    vin <- vars[mincp[-1]] 
+    }
+    sub <- lsfit(xH[,vin],yH) 
+    ps[i]<-length(sub$coef)
+    
+#***********************************************************************   
+    # We started here...
+    # Getting the bootstrap samples from the validation set (-H)
+    upper <- numeric(nb)
+    lower <- numeric(nb)
+    
+    for (j in 1:nb) {
+      
+    index <- sample.int(n-nH, n-nH, replace = TRUE)
+    Bx <- xV[index,]
+    By <- yV[index]
+    
+    # out side the loop?
+    yfhat <- sub$coef[1] + xf[vin] %*% sub$coef[-1]
+    
+    #valres <- y[-H] - sub$coef[1] - as.matrix(x[-H,vin]) %*% sub$coef[-1]
+    valres <- By - sub$coef[1] - as.matrix(Bx[,vin]) %*% sub$coef[-1]
+    #need as.matrix to prevent an error if vin has 1 variable
+    
+    #get asymptotically optimal PI using validation residuals
+    vpi <- shorth3(valres,alpha=alpha)$shorth
+    
+    
+    upper[j] <- yfhat + vpi[2]
+    lower[j] <- yfhat + vpi[1]
+    
+    
+    } # end of the bootstrap loop 
+    
+    up <- mean(upper)
+    low <- mean(lower)
+    
+    pilen[i] <- up - low
+    if(low < yf && up > yf)
+      opicov <- opicov + 1
+    
+    #get the NEW split conformal PI with boot residuals
+    absres <- abs(valres)
+    aq <- quantile(absres, 1-alpha)
+    up <- yfhat + aq
+    low <- yfhat - aq
+    splitpilen[i] <- up - low
+    if(low < yf && up > yf)
+      splitpicov <- splitpicov + 1
+    
+    #get the old split conformal PI 
+    #valres1 <- y[-H] - sub$coef[1] - as.matrix(x[-H,vin]) %*% sub$coef[-1]
+    #absres <- abs(valres1)
+    #aq <- quantile(absres, 1-alpha)
+    #up <- yfhat + aq
+    #low <- yfhat - aq
+    #splitpilen[i] <- up - low
+    #if(low < yf && up > yf)
+    #  splitpicov <- splitpicov + 1
+
+#***********************************************************************  
+        
+  }
+  psmn <- mean(ps)-k #0 if subset is selecting optimal subset
+  pimnlen <- mean(pilen)
+  opicov <- opicov/nruns
+  splitpimnlen <- mean(splitpilen)
+  splitpicov <- splitpicov/nruns
+  list(psmn=psmn,opicov=opicov,pimenlen=pimnlen,splitpicov=splitpicov,
+       splitpimenlen = splitpimnlen)}

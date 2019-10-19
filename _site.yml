@@ -11,6 +11,8 @@ navbar:
     href: teaching.html
   - text: "Research"
     href: scholarship.html
+  - text: "Software"
+    href: software.html    
   - text: "Online Tutoring"
     href: OnlineTutoring.html
   
