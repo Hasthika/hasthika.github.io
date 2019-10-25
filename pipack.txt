@@ -914,4 +914,300 @@ get_pi_table <- function(x, y, alpha = 0.05){
 
 # get_pi_table(x, y, alpha = 0.05)
 
+####################################################################
+# pi2graph will create a response plot given the dataframes x and y #
+# model will be created by forward selection                       #
+####################################################################
+
+pi2graph <- function(x, y, alpha = 0.05){
+  n <- nrow(x)
+  p <- ncol(x)
+  l <- rep(NA, n)
+  u <- rep(NA, n)
+  yfhat <- rep(NA, n)
+  nb <- 100
+  vmax <- min(p,as.integer(n/5))
+  
+  indx <- 1:n
+  vars <- as.vector(1:(p))
+  indx <- 1:n
+  nH <- ceiling(n/2)
+  
+  #find sets H and V
+  perm <- sample(indx,n)
+  H <- perm[1:nH]
+  xH <- x[H,]
+  yH <- y[H]
+  xV <- x[-H,]
+  yV <- y[-H]
+  
+  #find the forward sel minimum Cp or EBIC model on the training half set H
+  tem<-regsubsets(xH,yH,nvmax=vmax,method="forward")
+  out<-summary(tem)
+  if(nH < 10*p) {
+    xx <- 1:min(length(out$bic),p-1)+1
+    ebic <- out$bic+2*(-lgamma(xx+1)-lgamma(p-xx+1))
+    minebic <- out$which[ebic==min(ebic),]
+    #do not need the constant in vin
+    vin <- vars[minebic[-1]]                
+  } #if nH >= 10p use min Cp model
+  
+  else { mincp <- out$which[out$cp==min(out$cp),]             
+  #do not need the constant in vin
+  vin <- vars[mincp[-1]] 
+  }
+  
+  sub <- lsfit(xH[,vin],yH) 
+  #ps[i]<-length(sub$coef)
+  
+  #***********************************************************************   
+  # Getting the bootstrap samples from the validation set (-H)
+  upper <- numeric(nb)
+  lower <- numeric(nb)
+  
+  for (i in 1:n) {
+    
+    xf <- x[i,]
+    
+    yfhat[i] <- sub$coef[1] + as.matrix(xf[1,vin]) %*% as.matrix(sub$coef[-1])
+    
+    
+    for (j in 1:nb) {
+      
+      index <- sample.int(n-nH, n-nH, replace = TRUE)
+      Bx <- xV[index,]
+      By <- yV[index]
+      
+      valres <- By - sub$coef[1] - as.matrix(Bx[,vin]) %*% sub$coef[-1]
+      #need as.matrix to prevent an error if vin has 1 variable
+
+      absres <- abs(valres)
+      aq <- quantile(absres, 1-alpha)
+      
+      upper[j] <- yfhat[i] + aq
+      lower[j] <- yfhat[i] - aq
+      
+    } # end of the bootstrap loop 
+    
+    up <- mean(upper)
+    low <- mean(lower)
+    
+    FSPI2 <- c(low, up)
+    
+    FSPI2
+    
+    l[i] <- low
+    u[i] <- up
+    
+  }    
+  
+  library(latex2exp)
+  resplot <- ggplot(data.frame(l,u,yfhat,y), aes(x=yfhat, y=l)) + 
+    geom_abline(slope = 1, intercept = 0, color = "wheat") +
+    geom_smooth(linetype = "dashed", color = "blue", method = "auto", size = 0.5) + 
+    geom_smooth(aes(x=yfhat, y=u), linetype = "dashed" , color = "blue", method = "auto", size = 0.5) + 
+    geom_point(aes(x=yfhat, y=y), color = "green4", alpha = 0.5) +
+    labs(x = "yhat", y = "y", title = "Response Plot For PI2") + theme_bw() 
+  resplot
+  
+  plotly::ggplotly(resplot)
+  
+}
+
+# Example: Use the Auto dataframe from ISLR library
+# library(ISLR)
+# y <- Auto$mpg
+# x <- Auto[,-c(1,9)]
+
+# pi2graph(x, y, alpha = 0.05)
+
+#########################################################################
+# get_pi2_table will create a response plot given the datagrames x and y #
+# model will be created by forward selection                            #
+#########################################################################
+get_pi2_table <- function(x, y, alpha = 0.05){
+  
+  n <- nrow(x)
+  p <- ncol(x)
+  l <- rep(NA, n)
+  u <- rep(NA, n)
+  yfhat <- rep(NA, n)
+  nb <- 100
+  vmax <- min(p,as.integer(n/5))
+  
+  indx <- 1:n
+  vars <- as.vector(1:(p))
+  indx <- 1:n
+  nH <- ceiling(n/2)
+  
+  #find sets H and V
+  perm <- sample(indx,n)
+  H <- perm[1:nH]
+  xH <- x[H,]
+  yH <- y[H]
+  xV <- x[-H,]
+  yV <- y[-H]
+  
+  #find the forward sel minimum Cp or EBIC model on the training half set H
+  tem<-regsubsets(xH,yH,nvmax=vmax,method="forward")
+  out<-summary(tem)
+  if(nH < 10*p) {
+    xx <- 1:min(length(out$bic),p-1)+1
+    ebic <- out$bic+2*(-lgamma(xx+1)-lgamma(p-xx+1))
+    minebic <- out$which[ebic==min(ebic),]
+    #do not need the constant in vin
+    vin <- vars[minebic[-1]]                
+  } #if nH >= 10p use min Cp model
+  
+  else { mincp <- out$which[out$cp==min(out$cp),]             
+  #do not need the constant in vin
+  vin <- vars[mincp[-1]] 
+  }
+  
+  sub <- lsfit(xH[,vin],yH) 
+  #ps[i]<-length(sub$coef)
+  
+  #***********************************************************************   
+  # Getting the bootstrap samples from the validation set (-H)
+  upper <- numeric(nb)
+  lower <- numeric(nb)
+  
+  for (i in 1:n) {
+    
+    xf <- x[i,]
+    
+    yfhat[i] <- sub$coef[1] + as.matrix(xf[1,vin]) %*% as.matrix(sub$coef[-1])
+    
+    
+    for (j in 1:nb) {
+      
+      index <- sample.int(n-nH, n-nH, replace = TRUE)
+      Bx <- xV[index,]
+      By <- yV[index]
+      
+      valres <- By - sub$coef[1] - as.matrix(Bx[,vin]) %*% sub$coef[-1]
+      #need as.matrix to prevent an error if vin has 1 variable
+      
+      absres <- abs(valres)
+      aq <- quantile(absres, 1-alpha)
+      
+      upper[j] <- yfhat[i] + aq
+      lower[j] <- yfhat[i] - aq
+      
+    } # end of the bootstrap loop 
+    
+    up <- mean(upper)
+    low <- mean(lower)
+    
+    FSPI2 <- c(low, up)
+    
+    FSPI2
+    
+    l[i] <- low
+    u[i] <- up
+    
+  }    
+  
+  
+  knitr::kable(data.frame(number = seq(1,n,1),y = y, yhat = yfhat, lower=l, upper = u))
+  
+}
+
+# Example: Use the Auto dataframe from ISLR library
+# library(ISLR)
+# y <- Auto$mpg
+# x <- Auto[,-c(1,9)]
+
+# get_pi2_table(x, y, alpha = 0.05)
+
+
+###########################################################################
+# pi2fs will calculate the PI2 given dataframes  x, y and future x vector #
+# Forward selection will be used to build the model                       #
+###########################################################################
+pi2fs <- function(x, y, xf, alpha=0.05){
+  
+  nb <- 100
+  n <- nrow(x)
+  p <- ncol(x)
+  indx <- 1:n
+  vars <- as.vector(1:(p))
+  indx <- 1:n
+  nH <- ceiling(n/2)
+  vmax <- min(p,as.integer(n/5))
+  
+  #find sets H and V
+  perm <- sample(indx,n)
+  H <- perm[1:nH]
+  xH <- x[H,]
+  yH <- y[H]
+  xV <- x[-H,]
+  yV <- y[-H]
+  
+  #find the forward sel minimum Cp or EBIC model on the training half set H
+  tem<-regsubsets(xH,yH,nvmax=vmax,method="forward")
+  out<-summary(tem)
+  if(nH < 10*p) {
+    xx <- 1:min(length(out$bic),p-1)+1
+    ebic <- out$bic+2*(-lgamma(xx+1)-lgamma(p-xx+1))
+    minebic <- out$which[ebic==min(ebic),]
+    #do not need the constant in vin
+    vin <- vars[minebic[-1]]                
+  } #if nH >= 10p use min Cp model
+  
+  else { mincp <- out$which[out$cp==min(out$cp),]             
+  #do not need the constant in vin
+  vin <- vars[mincp[-1]] 
+  }
+  
+  
+  sub <- lsfit(xH[,vin],yH) 
+  #ps[i]<-length(sub$coef)
+  
+  #***********************************************************************   
+  # Getting the bootstrap samples from the validation set (-H)
+  upper <- numeric(nb)
+  lower <- numeric(nb)
+  
+  # out side the loop?
+  yfhat <- sub$coef[1] + as.matrix(xf[vin]) %*% as.matrix(sub$coef[-1])
+  
+  for (j in 1:nb) {
+    
+    index <- sample.int(n-nH, n-nH, replace = TRUE)
+    Bx <- xV[index,]
+    By <- yV[index]
+    
+   
+    #yhat <- sub$coef[1] + as.matrix(x[,vin]) %*% as.matrix(sub$coef[-1])
+    
+    valres <- By - sub$coef[1] - as.matrix(Bx[,vin]) %*% sub$coef[-1]
+    #need as.matrix to prevent an error if vin has 1 variable
+    
+    absres <- abs(valres)
+    aq <- quantile(absres, 1-alpha)
+    
+    upper[j] <- yfhat + aq
+    lower[j] <- yfhat - aq
+    
+    
+  } # end of the bootstrap loop 
+  
+  up <- mean(upper)
+  low <- mean(lower)
+  
+  FSPI2 <- c(low, up)
+  
+  FSPI2
+  
+}
+
+# Example: Use the Auto dataframe from ISLR library
+# library(ISLR)
+# y <- Auto$mpg[-15] # Consider 15th to be the future obs
+# x <- Auto[-15,-c(1,9)] # 
+# xf <- Auto[15,-c(1,9)] # Future x value
+
+# pi2fs(x, y, xf, alpha=0.05)
+
 
