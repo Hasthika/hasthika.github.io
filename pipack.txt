@@ -298,7 +298,7 @@ pi2sim<-function(n = 100, p = 4, k = 1, nruns = 100, eps = 0.1, shift = 9, psi =
        splitpimenlen = splitpimnlen)}
        
 #############################################################################
-# This function simulates the new predition interval 2 with lasso and rigde #
+# This function simulates the new predition interval 1 with lasso and rigde #
 #############################################################################
 
 pi1withlassoridge<-function(n = 100, p = 4, k = 1, nruns = 100,  
@@ -411,22 +411,13 @@ pi1withlassoridge<-function(n = 100, p = 4, k = 1, nruns = 100,
     vlaspilen[i] <- up - low
     if(low < yf && up > yf)
       vlaspicov <- vlaspicov + 1
-    
-    #get split NEW conformal PI for lasso using Bootstrap
-    #absres <- abs(valres)
-    #aq <- quantile(absres, 1-alpha)
-    #up <- yfhat + aq
-    #low <- yfhat - aq
-    #claspilen[i] <- up - low
-    #if(low < yf && up > yf)
-    #  claspicov <- claspicov + 1 
+  
     
 #***********************************************************************   
     
     #get the validation PI for ridge regression 
     out<-cv.glmnet(xH,yH,alpha=0)
-    # lcoef2 <- predict(out,type="coefficients",s=lam)
-    # lcoef2 <- as.vector(lcoef2) #bhat_H
+
     lam <- out$lambda.min
     yfhat <- predict(out,s=lam,newx=xf)
     
@@ -456,23 +447,11 @@ pi1withlassoridge<-function(n = 100, p = 4, k = 1, nruns = 100,
     if(low < yf && up > yf)
       vrrpicov <- vrrpicov + 1
     
-    #get the split conformal PI for RR
-    #absres <- abs(valres)
-    #aq <- quantile(absres, 1-alpha)
-    #up <- yfhat + aq
-    #low <- yfhat - aq
-    #crrpilen[i] <- up - low
-    #if(low < yf && up > yf)
-    #  crrpicov <- crrpicov + 1
   }
   vlaspimnlen <- mean(vlaspilen)
   vlaspicov <- vlaspicov/nruns
-  #claspimnlen <- mean(claspilen)
-  #claspicov <- claspicov/nruns
   vrrpimnlen <- mean(vrrpilen)
   vrrpicov <- vrrpicov/nruns
-  #crrpimnlen <- mean(crrpilen)
-  #crrpicov <- crrpicov/nruns
   vdd<-mean(vdd)
   #lasso and scaled lasso have the same d
   list(dvlas=vdd,vlaspicov=vlaspicov,vlaspimenlen=vlaspimnlen,vrrpicov=vrrpicov,vrrpimenlen=vrrpimnlen)}
