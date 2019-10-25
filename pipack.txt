@@ -3,6 +3,25 @@
 # Need library(ggplot2), library(leaps)                                       #
 ###############################################################################
 
+##################################################################################################################################
+#                                                                                                                                #
+# pi1sim() simulates the first prediction interval with Forward selection                                                        #
+# pi2sim() simulates the secons prediction interval with Forward selection                                                       #
+# pi1withlassoridge() This function simulates the new predition interval 1 with lasso and rigde                                  # 
+# pi2withlassoridge() This function simulates the new predition interval 2 with lasso and rigde                                  # 
+#                                                                                                                                #
+# pi1fs() will calculate the PI1 given dataframes  x, y and future x vector. Forward selection will be used to build the model   # 
+# pigraph() will create a response plot for PI1 given the dataframes x and y model will be created by forward selection          #
+# get_pi_table() will create a table for PI given the dataframes x and y model will be created by forward selection              #
+#                                                                                                                                #
+# pi2graph() will create a response plot for PI2 given the dataframes x and y model will be created by forward selection         # 
+# get_pi2_table() will create a table given the dataframes x and y model will be created by forward selection                    #
+# pi2fs() will calculate the PI2 given dataframes  x, y and future x vector. Forward selection will be used to build the model   #
+#                                                                                                                                #
+##################################################################################################################################
+
+
+
 ###############################
 # This function Frey PI       #
 ###############################
@@ -815,7 +834,7 @@ pigraph <- function(x, y, alpha = 0.05){
 
 
 #########################################################################
-# get_pi_table will create a response plot given the datagrames x and y #
+# get_pi_table will create a response plot given the dataframes x and y #
 # model will be created by forward selection                            #
 #########################################################################
 get_pi_table <- function(x, y, alpha = 0.05){
@@ -914,10 +933,10 @@ get_pi_table <- function(x, y, alpha = 0.05){
 
 # get_pi_table(x, y, alpha = 0.05)
 
-####################################################################
-# pi2graph will create a response plot given the dataframes x and y #
-# model will be created by forward selection                       #
-####################################################################
+#############################################################################
+# pi2graph will create a response plot for PI2 given the dataframes x and y #
+# model will be created by forward selection                                #
+#############################################################################
 
 pi2graph <- function(x, y, alpha = 0.05){
   n <- nrow(x)
@@ -1022,7 +1041,7 @@ pi2graph <- function(x, y, alpha = 0.05){
 # pi2graph(x, y, alpha = 0.05)
 
 #########################################################################
-# get_pi2_table will create a response plot given the datagrames x and y #
+# get_pi2_table will create a table given the dataframes x and y        #
 # model will be created by forward selection                            #
 #########################################################################
 get_pi2_table <- function(x, y, alpha = 0.05){
