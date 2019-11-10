@@ -15,7 +15,7 @@ My research interests are in several different areas in Statistics. My main focu
 ## Publications 
 
 
-* "An Approximation to the Skew--Normal Distribution,"  To appear, International Mathematical Forum, with Joel Sanqui, Lasanthi Watagoda. 
+* "[An Approximation to the Skew--Normal Distribution,](http://www.m-hikari.com/imf/imf-2019/5-8-2019/p/rupasingheIMF5-8-2019.pdf)"  Vol. 14, 2019, no. 7, 253-261, International Mathematical Forum, with Joel Sanqui, Lasanthi Watagoda. 
 
 * "[Examining the $n \geq 30$ is Sufficiently Large Caveat for the Sampling Distribution of $\bar{X}$ to Follow a Normal Distribution,](http://www.seio.es/BBEIO/BEIOVol34Num3/files/assets/basic-html/page-16.html)" Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.
 
