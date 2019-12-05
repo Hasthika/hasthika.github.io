@@ -9,22 +9,24 @@ output: html_document
 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
-## Future (Spring & Fall 2020) Classes
+## Future Classes
 
-* [STT 3250 --- Probability]()
-* [STT 4840 --- Time Series Forecasting]()
+#### Spring 2020
 
-## Classes taught
-
+* [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/) 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
-* [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/)
+
+#### Fall 2020
+
+* [STT 3250 --- Probability]() 
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
 
+#### Spring 2021
+
+* [STT 4880 --- Mathematical Statistics]()
+* [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
 
-
-* [AsULearn](https://asulearn.appstate.edu/)
-* [Miscellaneous Statistics](https://alanarnholt.github.io/GeneralStatistics/)
 
 ## Steps Toward Success
 
