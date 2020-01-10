@@ -5,16 +5,13 @@ output: html_document
 
 <i class="glyphicon glyphicon-star"></i> This page will serve as a directory for courses from Fall 2017 forward. <i class="glyphicon glyphicon-thumbs-up"></i>
 
-## Classes --- Fall 2019
-
-* [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
-
-## Future Classes
 
 #### Spring 2020
 
-* [STT 3820 --- Statistical Methods I](https://asulearn.appstate.edu/) 
+* [STT 3820 --- Statistical Methods I](../STT3820/CoursePacing/CoursePacing3820S2020.html) 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
+
+## Future Classes
 
 #### Fall 2020
 
