@@ -8,7 +8,7 @@ output: html_document
 
 #### Spring 2020
 
-* [STT 3820 --- Statistical Methods I](../STT3820/CoursePacing/CoursePacing3820S2020.html) 
+* [STT 3820 --- Statistical Methods I](https://hasthika.github.io/STT3820/index.html) 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
 ## Future Classes
