@@ -1,5 +1,5 @@
 #################################################################################
-# To load this library: use source("https://hasthika.github.io/hrlrpack")   #
+# To load this library: use source("https://hasthika.github.io/hrlrpack.txt")   #
 # Need library(ggplot2), library(leaps)                                         #
 #################################################################################
 
