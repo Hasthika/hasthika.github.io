@@ -7,6 +7,6 @@ output: html_document
 
 #### [R package for the Prediction Interval Project](pipack.txt)
 
-
+#### [R package for the HRLR Project](hrlrpack)
 
 * * *
