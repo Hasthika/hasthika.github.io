@@ -1,0 +1,411 @@
+#################################################################################
+# To load this library: use source("https://hasthika.github.io/hrlrpack")   #
+# Need library(ggplot2), library(leaps)                                         #
+#################################################################################
+
+
+####################################################################
+# This function creates a design matrix with correlated predictors #
+####################################################################
+
+makingx <- function(n=20, p=8){
+
+CRMt <- matrix(NA, nrow = p, ncol = p)
+diag(CRMt) <- 1
+
+for(i in 1:p){
+  for(j in 1:p){
+    CRMt[i,j] <- 0.5^(abs(i-j))
+  }
+}
+
+M = CRMt %*% matrix(rnorm(p*n), nrow=p, ncol=n)
+M1 <- t(M)
+return(M1)
+}
+
+####################################################################
+# This function creates a design matrix with correlated predictors #
+# for the xeample 3 in the simulation                              #
+####################################################################
+
+makingxEx3 <- function(n=100, p=40){
+
+CRMt <- matrix(NA, nrow = p, ncol = p)
+diag(CRMt) <- 1
+
+for(i in 1:p){
+  for(j in 1:p){
+    CRMt[i,j] <- 0.5
+  }
+}
+
+M = CRMt %*% matrix(rnorm(p*n), nrow=p, ncol=n)
+M1 <- t(M)
+return(M1)
+}
+
+###################################################
+# This function simulates the hrlr function       #
+# type = error distribution (1, 2, 3, 4 or 5)     #  
+# ex = example used in the simulation (1, 2 or 3) #
+###################################################
+
+hrlrsim <-function(nruns = 50, type = 1, ex = 1){
+
+hrlrbetaSUM <- c(0,0,0,0,0,0,0,0)
+ralxbetaSUM <- c(0,0,0,0,0,0,0,0)
+lassobetaSUM <- c(0,0,0,0,0,0,0,0)
+ridgebetaSUM <- c(0,0,0,0,0,0,0,0)
+enetbetaSUM <- c(0,0,0,0,0,0,0,0)
+
+if (ex == 3){
+  hrlrbetaSUM <- rep(0,40)
+ralxbetaSUM <- rep(0,40)
+lassobetaSUM <- rep(0,40)
+ridgebetaSUM <- rep(0,40)
+enetbetaSUM <- rep(0,40)
+}
+TRMSE_hrlr_sum <- numeric(nruns)
+TRMSE_relx_sum <- numeric(nruns)
+TRMSE_lasso_sum <- numeric(nruns)
+TRMSE_ridge_sum <- numeric(nruns)
+TRMSE_enet_sum <- numeric(nruns)
+
+#hrlrbetaPlot <- matrix(numeric(nruns), nrow = nruns, ncol = 8)
+
+for (i in 1:nruns) {
+  
+    if(ex == 1){
+      
+      
+      #x <- matrix(rnorm(n * 8), nrow = n, ncol = 8)  # This is the x that we used before.
+      x <- makingx(n = 20, p = 8)   # This is the x with correlation
+      
+      n_test <- 200
+      x_test <- makingx(n = n_test, p = 8) # Use this as a test set
+      
+      beta <- matrix(c(3,1.5,2,0,0,0,0,0), nrow = 8, ncol = 1)
+      
+      p <- ncol(x)
+      n <- nrow(x)
+      sigma <- 3
+    }
+    
+    if(ex == 2){
+      
+      #x <- matrix(rnorm(n * 8), nrow = n, ncol = 8)  # This is the x that we used before.
+      x <- makingx(n = 20, p = 8)   # This is the x with correlation
+      
+      n_test <- 200
+      x_test <- makingx(n = n_test, p = 8) # Use this as a test set
+      
+      beta <- matrix(c(.85,.85,.85,.85,.85,.85,.85,0.85), nrow=8, ncol=1)
+      
+      p <- ncol(x)
+      n <- nrow(x)
+      sigma <- 3
+    }
+    
+  
+    if(ex == 3){
+      
+     
+      x <- makingx(n = 100, p = 40)   # This is the x with correlation
+      #x <- makingx(n = 100, p = 40)
+      
+      n_test <- 400
+      x_test <- makingx(n = n_test, p = 40) # Use this as a test set
+
+      beta <- matrix(c(rep(0,10), rep(2,10), rep(0,10), rep(2,10)), nrow=40, ncol=1)
+      
+      p <- ncol(x)
+      n <- nrow(x)
+      sigma <- 15
+    }
+    
+    
+    #centered so do I need y <- 1 + x %*% b + rnorm(n)
+    
+    # Set sigma*rnorm(n) where sigma = 3 as in Enet paper p.312.
+    
+    if(type == 1) {
+      y <- x %*% beta  + sigma*rnorm(n)
+      y_test <- x_test %*% beta  + sigma*rnorm(n_test)
+    }
+    if(type == 2) {
+      y <- x %*% beta  + rt(n, df = 3)
+      y_test <- x_test %*% beta  + rt(n_test, df = 3)
+      
+    }
+    if(type == 3) {
+      y <- x %*% beta  + rexp(n) - 1
+      y_test <- x_test %*% beta  + rexp(n_test) - 1
+    }
+    if(type == 4) {
+      y <- x %*% beta  + runif(n, min = -1, max = 1)
+      y_test <- x_test %*% beta  + runif(n_test, min = -1, max = 1)
+    }
+    if(type == 5) {
+      eps <- 0.5
+      shift <- 0.1
+      err <- rnorm(n, sd = 1 + rbinom(n, 1, eps) * shift)
+      y <- 1 + x %*% beta  + err
+      
+      errTest <- rnorm(n_test, sd = 1 + rbinom(n_test, 1, eps) * shift)
+      y_test <- x_test %*% beta  + errTest
+    } 
+
+
+
+  
+
+    #----------------relax lasso----------------------------
+  
+    if(ex == 3) steps = 200
+    else steps =  min(2*length(y), 2 * ncol(x))
+    #steps =  min(2*length(y), 2 * ncol(x))
+    
+    colnames(x) <- paste("x", 1:ncol(x), sep = "")
+    cv.result <- cvrelaxo(scale(x), scale(y, scale = FALSE), max.steps = steps)
+    relaxbeta <- cv.result$beta
+    
+
+    yhat_test <- x_test %*% t(relaxbeta)
+    TRMSE_relx <- sqrt(mean((y_test-yhat_test)^2))
+    
+    #---------------- end relax lasso----------------------------
+    
+    #---------------- lasso--------------------------------------
+    
+    
+    cvfit <- cv.glmnet(x, y, intercept = FALSE, grouped=FALSE)
+    lassobeta <- coef(cvfit, s = "lambda.min")
+    
+    yhat_test <- x_test %*% lassobeta[-1,]
+    TRMSE_lasso <- sqrt(mean((y_test-yhat_test)^2))
+    
+    #----------------end lasso-----------------------------------
+    
+    #---------------- ridge--------------------------------------
+
+    ridgefit <- cv.glmnet(x, y, intercept = FALSE, alpha = 0, grouped=FALSE)
+    ridgebeta <- coef(ridgefit, s = "lambda.min")
+    
+    yhat_test <- x_test %*% ridgebeta[-1,]
+    TRMSE_ridge <- sqrt(mean((y_test-yhat_test)^2))
+    #----------------end ridge------------------------------------
+    
+    #---------------- enet----------------------------------------
+    enetfit <- cv.glmnet(x, y, intercept = FALSE, alpha = 0.5, grouped=FALSE)
+    enetbeta <- coef(enetfit, s = "lambda.min")
+    
+    yhat_test <- x_test %*% enetbeta[-1,]
+    TRMSE_enet <- sqrt(mean((y_test-yhat_test)^2))
+    #----------------end enet--------------------------------------
+    
+  
+  
+lambda2 <- matrix(seq(0,0.5, 0.01),nrow = 51, ncol = 1)
+mse <- matrix(rep(NA,51),nrow = 51, ncol = 1)
+
+for (j in 1:51){	# This loop will choose lambda2 by min MSE
+       
+       lambda2I <- sqrt(lambda2[j,1])*diag(p)
+       xstar <- (1/sqrt(1+lambda2[j,1]))*rbind(x, lambda2I)  #augmented x
+      
+       zerovec <- matrix(0,nrow=p,ncol=1)
+       ystar <- rbind(y, zerovec)  #augmented y
+
+      colnames(xstar) <- paste("xstar", 1:ncol(xstar), sep = "")
+      cvfit1 <- cvrelaxo(scale(xstar), scale(ystar, scale = FALSE), max.steps = steps)
+      betastar <- cvfit1$beta
+      
+      ystar_hat <- xstar %*% t(betastar)
+      mse[j,1] <- mean((ystar-ystar_hat)^2) #to get the average MSE for the simulation with nruns
+     }
+
+
+lambda2I <- sqrt(lambda2[which.min(mse),1])*diag(p)
+xstar <- (1/sqrt(1+lambda2[which.min(mse),1]))*rbind(x, lambda2I)  #augmented x
+
+zerovec <- matrix(0,nrow=p,ncol=1)
+ystar <- rbind(y, zerovec)  #augmented y
+
+     # now applying relax lasson on the augmnted data
+     colnames(xstar) <- paste("xstar", 1:ncol(xstar), sep = "")
+
+     cv.result2 <- cvrelaxo(scale(xstar), scale(ystar, scale = FALSE), max.steps = steps)
+     hrlr_betastar <- cv.result2$beta
+     
+     hrlrbeta <- hrlr_betastar/sqrt(lambda2[which.min(mse),1]+1)  
+     
+    yhat_test <- x_test %*% t(hrlrbeta)
+    TRMSE_hrlr <- sqrt(mean((y_test-yhat_test)^2))
+
+hrlrbetaSUM <- hrlrbetaSUM + hrlrbeta
+ralxbetaSUM <- ralxbetaSUM + relaxbeta
+lassobetaSUM <- lassobetaSUM + lassobeta[-1,]
+ridgebetaSUM <- ridgebetaSUM + ridgebeta[-1,]
+enetbetaSUM <- enetbetaSUM + enetbeta[-1,]
+
+TRMSE_hrlr_sum[i] <- TRMSE_hrlr
+TRMSE_relx_sum[i]  <-  TRMSE_relx
+TRMSE_lasso_sum[i]  <-  TRMSE_lasso
+TRMSE_ridge_sum[i]  <-  TRMSE_ridge
+TRMSE_enet_sum[i]  <-  TRMSE_enet
+
+}
+
+hrlrCov <- hrlrbetaSUM/nruns
+relxCov <- ralxbetaSUM/nruns
+lassoCov <- lassobetaSUM/nruns
+ridgeCov <- ridgebetaSUM/nruns
+enetCov <- enetbetaSUM/nruns
+
+
+TE_hrlr <- median(TRMSE_hrlr_sum)
+TE_relx <- median(TRMSE_relx_sum)
+TE_lasso <- median(TRMSE_lasso_sum)
+TE_ridge <- median(TRMSE_ridge_sum)
+TE_enet <- median(TRMSE_enet_sum)
+TE_hrlrSE <- sd(TRMSE_hrlr_sum)
+TE_relxSE <- sd(TRMSE_relx_sum)
+TE_lassoSE <- sd(TRMSE_lasso_sum)
+TE_ridgeSE <- sd(TRMSE_ridge_sum)
+TE_enetSE <- sd(TRMSE_enet_sum)
+
+Tab_Coef <- data.frame(True = beta, HRLR = hrlrCov[1,], Relax = relxCov[1,], Lasso = lassoCov, Ridge = ridgeCov, Enet = enetCov)
+kable(Tab_Coef)
+
+Tab_TRMSE <- data.frame(TE_hrlr, TE_relx, TE_lasso, TE_ridge, TE_enet)
+kable(Tab_TRMSE)
+
+Tab_TRMSE_SE <- data.frame(TE_hrlrSE, TE_relxSE, TE_lassoSE, TE_ridgeSE, TE_enetSE)
+kable(Tab_TRMSE_SE)
+
+library(ggplot2)
+
+TRMSE <- c(TRMSE_hrlr_sum,TRMSE_relx_sum,TRMSE_lasso_sum,TRMSE_ridge_sum,TRMSE_enet_sum)
+Method <- c(rep("HRLR", nruns), rep("relex", nruns),rep("Lasso", nruns),rep("Ridge", nruns),rep("Enet", nruns))
+
+ErrorPlot <- data.frame(TRMSE, Method)
+
+
+rmse_plot <- ggplot((data=ErrorPlot), aes(y=TRMSE, fill = Method)) + geom_boxplot() + theme_bw()
+
+list(rmse_plot = rmse_plot, Tab_Coef = kable(Tab_Coef), Tab_TRMSE=kable(Tab_TRMSE), Tab_TRMSE_SE = kable(Tab_TRMSE_SE))
+
+
+
+
+####################################################################
+# Function `hrlr()` will find the cross validated solutions using  #
+# the HRLR algorithm                                               #
+####################################################################
+
+hrlr <- function(x, y, lambda2Grid = seq(0,0.5, 0.01)){
+ 
+
+  p <- ncol(x)
+  n <- nrow(x)
+
+lambda2 <- matrix(lambda2Grid, nrow = length(lambda2Grid), ncol = 1)
+mse <- matrix(rep(NA,length(lambda2Grid)),nrow = length(lambda2Grid), ncol = 1)
+
+for (j in 1:length(lambda2Grid)){	# This loop will choose lambda2 by min MSE
+       
+       lambda2I <- sqrt(lambda2[j,1])*diag(p)
+       xstar <- (1/sqrt(1+lambda2[j,1]))*rbind(x, lambda2I)  #augmented x
+      
+       zerovec <- matrix(0,nrow=p,ncol=1)
+       ystar <- rbind(as.matrix(y), zerovec)  #augmented y
+
+      colnames(xstar) <- paste("xstar", 1:ncol(xstar), sep = "")
+      cvfit1 <- cvrelaxo(scale(xstar), scale(ystar, scale = FALSE))
+      betastar <- cvfit1$beta
+      
+      ystar_hat <- xstar %*% t(betastar)
+      mse[j,1] <- mean((ystar-ystar_hat)^2) #to get the average MSE for the simulation with nruns
+     }
+
+
+  lambda2I <- sqrt(lambda2[which.min(mse),1])*diag(p)
+  xstar <- (1/sqrt(1+lambda2[which.min(mse),1]))*rbind(x, lambda2I)  #augmented x
+
+  zerovec <- matrix(0,nrow=p,ncol=1)
+  ystar <- rbind(as.matrix(y), zerovec)  #augmented y
+
+     # now applying relax lasson on the augmnted data
+     colnames(xstar) <- paste("xstar", 1:ncol(xstar), sep = "")
+     cv.result2 <- cvrelaxo(scale(xstar), scale(ystar, scale = FALSE))
+     hrlr_betastar <- cv.result2$beta
+     
+     hrlrbeta <- hrlr_betastar/sqrt(lambda2[which.min(mse),1]+1)  
+     
+     list(hrlrbeta = hrlrbeta)
+}
+
+
+
+###############################################################
+# Example: HRLR, Relax Lasso, Lasso, Ridge and Enet solutions #
+# using diabetes data.                                        #
+###############################################################
+
+data("diabetes")
+
+#set.seed(9999) # this is good because HRLR do not drop age
+set.seed(0987)
+train = sample(c(TRUE, FALSE), size = nrow(diabetes), replace = TRUE)
+test <- (!train)
+
+xtrain <- scale(diabetes$x[train,])
+xtest <- scale(diabetes$x[test,])
+
+ytrain <- as.numeric(scale(diabetes$y[train]))
+ytest <- as.numeric(scale(diabetes$y[test]))
+
+
+y <- ytrain
+x <- xtrain
+
+
+hrlrBeta <- hrlr(x = x, y = y)
+hrlrBeta
+
+    yhattest <- xtest %*% t(hrlrBeta$hrlrbeta)
+    TRMSEhrlr <- sqrt(mean((ytest-yhattest)^2))
+
+cv.result <- cvrelaxo(scale(x), scale(y, scale = FALSE))
+relaxbeta <- cv.result$beta
+relaxbeta
+
+  yhattest <- xtest %*% t(relaxbeta)
+  TRMSErelx <- sqrt(mean((ytest-yhattest)^2))
+
+cvfit <- cv.glmnet(x, y, intercept = FALSE, grouped=FALSE)
+lassobeta <- coef(cvfit, s = "lambda.min")
+lassobeta
+
+    yhattest <- xtest %*% lassobeta[-1,]
+    TRMSElasso <- sqrt(mean((ytest-yhattest)^2))
+
+ridgefit <- cv.glmnet(x, y, intercept = FALSE, alpha = 0, grouped=FALSE)
+ridgebeta <- coef(ridgefit, s = "lambda.min")
+ridgebeta
+
+    yhattest <- xtest %*% ridgebeta[-1,]
+    TRMSEridge <- sqrt(mean((ytest-yhattest)^2))
+
+enetfit <- cv.glmnet(x, y, intercept = FALSE, alpha = 0.5, grouped=FALSE)
+enetbeta <- coef(enetfit, s = "lambda.min")
+enetbeta
+
+    yhattest <- xtest %*% enetbeta[-1,]
+    TRMSEenet <- sqrt(mean((ytest-yhattest)^2))
+
+data.frame(HRLR = t(hrlrBeta$hrlrbeta), Relax = relaxbeta[1,],Lasso = lassobeta[-1,1], Ridge = ridgebeta[-1,1], Enet = enetbeta[-1,1])
+
+
+data.frame(TRMSEhrlr, TRMSErelx, TRMSElasso, TRMSEridge, TRMSEenet)
