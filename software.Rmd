@@ -3,10 +3,10 @@ title: "Software"
 output: html_document
 ---
 
-## R packages
+## **R packages**
 
-#### [R package for the Prediction Interval Project](pipack.txt)
+  * [R package for the Prediction Interval Project](pipack.txt)
 
-#### [R package for the HRLR Project](hrlrpack.txt)
+  * [R package for the HRLR Project](hrlrpack.txt)
 
 * * *
