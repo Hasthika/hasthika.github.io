@@ -1,5 +1,5 @@
 ---
-title: "Teaching"
+title: "**Teaching**"
 output: html_document
 ---
 
@@ -11,7 +11,11 @@ output: html_document
 * [STT 3820 --- Statistical Methods I](https://hasthika.github.io/STT3820/index.html) 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
-## Future Classes
+## **Future Classes**
+
+### Summer I 2020
+
+* [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
 
 #### Fall 2020
 
@@ -25,7 +29,7 @@ output: html_document
 
 
 
-## Steps Toward Success
+## **Steps Toward Success**
 
 * Click [here](StepsTowardsSuccess.html)
 
