@@ -27,7 +27,7 @@ With the explosion of “Big Data” problems, statistical learning has become a
 *This website was last rendered on `r format(Sys.time(), "%A, %B %d, %Y - %X.")`*
 
 
-
+<script data-ad-client="ca-pub-1867406200405280" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
 * * *
