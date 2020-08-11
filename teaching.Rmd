@@ -3,24 +3,32 @@ title: "**Teaching**"
 output: html_document
 ---
 
-<i class="glyphicon glyphicon-star"></i> This page will serve as a directory for courses from Fall 2017 forward. <i class="glyphicon glyphicon-thumbs-up"></i>
-
-
+<!--
 #### Spring 2020
 
 * [STT 3820 --- Statistical Methods I](https://hasthika.github.io/STT3820/index.html) 
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
-## **Future Classes**
+
+
+
+
+
 
 ### Summer I 2020
 
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
+-->
+
+
 
 #### Fall 2020
 
-* [STT 3250 --- Probability]() 
+* [STT 3250 --- Probability](https://hasthika.github.io/STT3250/index.html) 
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
+
+
+## **Future Classes**
 
 #### Spring 2021
 
