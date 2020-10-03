@@ -17,6 +17,8 @@ navbar:
     href: software.html    
   - text: "Online Tutoring"
     href: OnlineTutoring.html
+  - text: "Non-Academic links"
+    href: coolstuff.html
   
   right:
   - text: "About me"
