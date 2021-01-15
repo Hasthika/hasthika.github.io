@@ -39,6 +39,14 @@ output: html_document
 * [STT 3850 --- Statistical Data Analysis I](https://hasthika.github.io/STT3850/index.html)
 
 
+## **Future Classes**
+
+#### Fall 2021
+
+* [STT 3820 --- Statistical Methods I]() 
+* [STT 3850 --- Statistical Data Analysis I]()
+* [STT 2810 --- Introduction to Statistics]()
+
 
 ## **Steps Toward Success**
 
