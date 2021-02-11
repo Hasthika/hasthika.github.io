@@ -14,8 +14,11 @@ My research interests are in several different areas in Statistics. My main focu
 
 ## Publications 
 
-* "[Predictive Model Building,](https://stat-ata-asu.github.io/PredictiveModelBuilding/index.html)"   Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
+* "Large Sample Bootstrap Prediction Intervals for Variable Selection or Shrinkage Estimators", Work in Progress, with Lasanthi Watagoda
 
+* "A new regularization and variable selection technique - HRLR,"  Under Review, with Alan Arnholt, Lasanthi Watagoda. 
+
+* "[Advertisement for Predictive Model Building,](https://stat-ata-asu.github.io/PredictiveModelBuilding/index.html)" Conference Proceedings,  $32^{nd}$ Annual International Conference on Technology in Collegiate Mathematics (ICTCM), with Alan Arnholt, Lasanthi Watagoda
 
 * "[An Approximation to the Skew--Normal Distribution,](http://www.m-hikari.com/imf/imf-2019/5-8-2019/p/rupasingheIMF5-8-2019.pdf)"  Vol. 14, 2019, no. 7, 253-261, International Mathematical Forum, with Joel Sanqui, Lasanthi Watagoda. 
 
@@ -33,7 +36,6 @@ My research interests are in several different areas in Statistics. My main focu
 * "[Visualizing and Testing the Multivariate Linear Regression Model,](http://www.ccsenet.org/journal/index.php/ijsp/article/view/43460)" International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.
 
 
-* "A new regularization and variable selection technique - HRLR,"  Work in progress, with Alan Arnholt, Lasanthi Watagoda. 
 
 
 
@@ -42,6 +44,10 @@ My research interests are in several different areas in Statistics. My main focu
 
 
 ## Conference talks
+
+
+* ICTCM, "A Unified Introduction to Predictive Model Building for Undergraduate Researchers", July 2020, Contributed Talk
+
 * Joint Mathematics Meetings, "A new regularization and variable selection technique - HRLR", January 2019, Contributed Talk
 
 * Joint Mathematics Meetings, "Bootstrapping analogs of the one way MANOVA test", January 2018, Contributed Talk

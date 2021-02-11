@@ -32,7 +32,7 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -78,6 +78,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="alans.css" type="text/css" />
 
@@ -318,7 +319,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/hasthika/hasthika.github.io/">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -348,7 +349,9 @@ $(document).ready(function () {
 <div id="publications" class="section level2">
 <h2>Publications</h2>
 <ul>
-<li><p>“<a href="https://stat-ata-asu.github.io/PredictiveModelBuilding/index.html">Predictive Model Building,</a>” Work in progress, with Alan Arnholt, Lasanthi Watagoda.</p></li>
+<li><p>“Large Sample Bootstrap Prediction Intervals for Variable Selection or Shrinkage Estimators”, Work in Progress, with Lasanthi Watagoda</p></li>
+<li><p>“A new regularization and variable selection technique - HRLR,” Under Review, with Alan Arnholt, Lasanthi Watagoda.</p></li>
+<li><p>“<a href="https://stat-ata-asu.github.io/PredictiveModelBuilding/index.html">Advertisement for Predictive Model Building,</a>” Conference Proceedings, <span class="math inline">\(32^{nd}\)</span> Annual International Conference on Technology in Collegiate Mathematics (ICTCM), with Alan Arnholt, Lasanthi Watagoda</p></li>
 <li><p>“<a href="http://www.m-hikari.com/imf/imf-2019/5-8-2019/p/rupasingheIMF5-8-2019.pdf">An Approximation to the Skew–Normal Distribution,</a>” Vol. 14, 2019, no. 7, 253-261, International Mathematical Forum, with Joel Sanqui, Lasanthi Watagoda.</p></li>
 <li><p>“<a href="http://www.seio.es/BBEIO/BEIOVol34Num3/files/assets/basic-html/page-16.html">Examining the <span class="math inline">\(n \geq 30\)</span> is Sufficiently Large Caveat for the Sampling Distribution of <span class="math inline">\(\bar{X}\)</span> to Follow a Normal Distribution,</a>” Bulletin of Statistics and Operations Research, with Alan Arnholt, William Bauldry and Lasanthi Watagoda.</p></li>
 <li><p>“<a href="https://www.ncbi.nlm.nih.gov/pubmed/30676153">Sprint Assessment using Machine Learning and a Wearable Accelerometer,</a>”, Journal of Applied Biomechanics, with Reed D. Gurchiek, Lasanthi Watagoda, Ryan S. McGinnis, Alan Arnholt, Herman van Werkhoven, Alan Needle, Jeffrey M. McBride.</p></li>
@@ -356,12 +359,12 @@ $(document).ready(function () {
 <li><p>“<a href="http://www.ccsenet.org/journal/index.php/ijsp/article/view/0/37171">A Relationship Between One-Way MANOVA Test Statistic and the Hotelling Lawley Trace Test Statistic,</a>” Vol. 7, No. 6, 2018, International Journal of Statistics and Probability.</p></li>
 <li><p>“<a href="http://www.tandfonline.com/doi/abs/10.1080/03610926.2017.1337146?journalCode=lsta20">Bootstrapping analogs of the Hotelling’s <span class="math inline">\(T^2\)</span> test,</a>” Communications in Statistics Theory and Methods, Oct. 17, 2017 with Lasanthi Watagoda.</p></li>
 <li><p>“<a href="http://www.ccsenet.org/journal/index.php/ijsp/article/view/43460">Visualizing and Testing the Multivariate Linear Regression Model,</a>” International Journal of Statistics and Probability, January 22, 2015, with David J Olive, Lasanthi Watagoda.</p></li>
-<li><p>“A new regularization and variable selection technique - HRLR,” Work in progress, with Alan Arnholt, Lasanthi Watagoda.</p></li>
 </ul>
 </div>
 <div id="conference-talks" class="section level2">
 <h2>Conference talks</h2>
 <ul>
+<li><p>ICTCM, “A Unified Introduction to Predictive Model Building for Undergraduate Researchers”, July 2020, Contributed Talk</p></li>
 <li><p>Joint Mathematics Meetings, “A new regularization and variable selection technique - HRLR”, January 2019, Contributed Talk</p></li>
 <li><p>Joint Mathematics Meetings, “Bootstrapping analogs of the one way MANOVA test”, January 2018, Contributed Talk</p></li>
 <li><p>Statistics Group Meeting, “Introduction to Overleaf: A collaborative real time LaTeX writing tool”, October 2017, Contributed Talk</p></li>
@@ -409,7 +412,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
