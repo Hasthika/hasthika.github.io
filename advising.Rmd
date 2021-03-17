@@ -8,7 +8,7 @@ output: html_document
 
 1) Please make an appointment via email. 
 
-2) Click [here](https://appstate.zoom.us/j/97290881871?pwd=MnpkSXo1bEtJbXpLT0ZrV3B1b3FMZz09) to join your scheduled advising meeting via zoom (passcode is 664399).
+2) Click [here](https://appstate.zoom.us/j/93433190572?pwd=R3ZIUmh0VGhOZXkvRjhxQkNwOU12dz09) to join your scheduled advising meeting via zoom (passcode is 999348).
 
 
 * * *
