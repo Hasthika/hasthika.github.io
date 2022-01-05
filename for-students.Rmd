@@ -6,12 +6,13 @@ output:
     toc_float:
       collapsed: false
 ---
+
 ## Office Hours <i class="fa fa-clock-o"></i>
 
-My office is in 324 Walker Hall. Office hours for the Spring 2020 are listed below. Students may click on [book now](https://hasthika.youcanbook.me/) to schedule an appointment.
+My office is in 324 Walker Hall (For SP2022, the office hours are online only check your course webpage for more info). Office hours for the Spring 2022 are listed below. Students may also click on [book now](https://hasthika.youcanbook.me/) to schedule an appointment during aditional times listed.
 
 ```{r, echo = FALSE}
-df <- data.frame(Time = c( "09:30-10:45", "11:00-12:00", "12:00-01:00","01:00-2:30",""), Monday = c("Research", "Lunch", "Prep", "Prep", ""), Tuesday = c("STT 3250", "STT 3820", "Lunch", "Office", ""),  Wednesday =  c("STT 3250", "Office", "Lunch", "Prep", ""), Thurdsay =  c("STT 3250", "STT 3820", "Lunch", "Office", ""))
+df <- data.frame(Time = c( "09:30-10:45", "11:00-12:00", "12:00-01:00","01:00-2:30","02:30-4:00"), Monday = c("Research", "Lunch", "Research", "Prep", "Prep"), Tuesday = c("STT 4880", "STT 3851", "Lunch", "Research", "Office"),  Wednesday =  c("Research", "Research", "Lunch", "Prep", "Prep"), Thurdsay =  c("STT 4880", "STT 3851", "Lunch", "Research", "Office"))
 knitr::kable(df, align = c("c","c","c","c","c","c"))
 
 ```
