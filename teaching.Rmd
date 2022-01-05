@@ -3,13 +3,21 @@ title: "**Teaching**"
 output: html_document
 ---
 
+
+#### Spring 2022 
+
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
+* [STT 3851 --- Statistical Data Analysis II]()
+
+<!--
+
 #### Fall 2021
 
 * [STT 3250 --- Probability](https://hasthika.github.io/STT3250/index.html) 
 * [STT 3820 --- Statistical Methods I](https://hasthika.github.io/STT3820/index.html)
 * [STT 2810 --- Introduction to Statistics](https://www.pearsonmylabandmastering.com/northamerica/)
 
-<!--
+
 #### Spring 2020
 
 * [STT 3820 --- Statistical Methods I](https://hasthika.github.io/STT3820/index.html) 
@@ -46,11 +54,6 @@ output: html_document
 -->
 
 ## **Future Classes**
-
-#### Spring 2022 
-
-* [STT 4880 --- Mathematical Statistics]() 
-* [STT 3851 --- Statistical Data Analysis II]()
 
 #### Fall 2022 
 
