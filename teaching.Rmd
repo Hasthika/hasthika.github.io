@@ -7,7 +7,7 @@ output: html_document
 #### Spring 2022 
 
 * [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
-* [STT 3851 --- Statistical Data Analysis II]()
+* [STT 3851 --- Statistical Data Analysis II](https://hasthika.github.io/STT3851/)
 
 <!--
 
