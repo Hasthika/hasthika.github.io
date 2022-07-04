@@ -4,12 +4,20 @@ output: html_document
 ---
 
 
+
+
+#### Fall 2022
+
+* [STT 3851 --- Statistical Data Analysis II](https://hasthika.github.io/STT3851/)
+
+<!--
+
 #### Spring 2022 
 
 * [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
 * [STT 3851 --- Statistical Data Analysis II](https://hasthika.github.io/STT3851/)
 
-<!--
+
 
 #### Fall 2021
 
@@ -55,10 +63,10 @@ output: html_document
 
 ## **Future Classes**
 
-#### Fall 2022 
+#### Spring 2023 
 
-* [STT 3850 --- Statistical Data Analysis I]()
-
+* [STT 3851 --- Statistical Data Analysis II](https://hasthika.github.io/STT3851/)
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
 
 
 ## **Steps Toward Success**
