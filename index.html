@@ -13,7 +13,7 @@
 
 <title>Welcome!</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -59,6 +59,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="alans.css" type="text/css" />
 
 
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -235,7 +239,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -304,7 +308,10 @@ $(document).ready(function () {
 <img src="images/data-word-cloud.png" alt="Hasthika" align="center" hspace="20" style="width:550px;height:150px;">
 </figure>
 <p><br /></p>
-With the explosion of “Big Data” problems, statistical learning has become a very hot field in many scientific areas as well as marketing, finance, and other business disciplines. People with statistical learning skills are in high demand.
+With the explosion of “Big Data” problems, statistical learning has
+become a very hot field in many scientific areas as well as marketing,
+finance, and other business disciplines. People with statistical
+learning skills are in high demand.
 <p align="right">
 <em>– Trevor Hastie and Robert Tibshirani in their book: ISLR.</em>
 </p>
@@ -316,13 +323,14 @@ With the explosion of “Big Data” problems, statistical learning has become a
 <li>Bootstrapping</li>
 <li>Reproducible research</li>
 </ul>
-<p><em>This website was last rendered on Wednesday, January 05, 2022 - 05:44:51 PM.</em></p>
+<p><em>This website was last rendered on Saturday, July 09, 2022 -
+03:56:20 PM.</em></p>
 <script data-ad-client="ca-pub-1867406200405280" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <hr />
 
 <div id="footer">
      <p><strong>Hasthika Rupasinghe</strong> </br>
-			Assistant Professor of Statistics </br>
+			Associate Professor of Statistics </br>
       <a href="mailto:hasthika@appstate.edu"> hasthika@appstate.edu</a>  </br>
       <img src="images/asu-logo-white-600.png" style="background-color:black; width:180px; float:left;" width =  /> 
 </p>
@@ -330,7 +338,7 @@ With the explosion of “Big Data” problems, statistical learning has become a
         <p><a href="https://hasthika.youcanbook.me/" data-ycbm-modal="true"><img src="https://youcanbook.me/resources/pics/ycbm-button.png" style="border-style:none;"/></a>
         </p>
       
-        
+      
         <p>
     <strong>Mailing Address</strong><br />      
     <a href = "http://www.appstate.edu/"> Appalachian State University</a><br />

@@ -12,7 +12,7 @@ output:
 My office is in 324 Walker Hall (For the Fall of 2022, the office hours are online only check your course webpage for more info). Office hours for the Fall 2022 are listed below. Students may also click on [book now](https://hasthika.youcanbook.me/) to schedule an appointment during additional times listed.
 
 ```{r, echo = FALSE}
-library(leaflet)
+
 df <- data.frame(Time = c( "09:30-10:45", "11:00-12:00", "12:00-01:00","01:00-2:30","02:30-4:00"), Monday = c("Research", "Lunch", "Research", "Prep", "Prep"), Tuesday = c("STT 3851", "Research", "Lunch", "Research", "Office"),  Wednesday =  c("Research", "Research", "Lunch", "Prep", "Prep"), Thurdsay =  c("STT 3851", "Research", "Lunch", "Research", "Office"))
 knitr::kable(df, align = c("c","c","c","c","c","c"))
 
