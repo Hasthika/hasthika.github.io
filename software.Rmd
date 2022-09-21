@@ -9,6 +9,6 @@ output: html_document
 
   * [R package for the HRLR Project](hrlrpack.txt)
   
-  * [R package for the OLS after VS Prject](olsvspack.txt)
+  * [R package for the OLS after VS Project](olsvspack.txt)
 
 * * *
