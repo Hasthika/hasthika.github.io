@@ -1,0 +1,125 @@
+olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1, 
+                     shift = 9, psi = 0.0, type = 1, alpha = 0.05, pitype = 1){
+  # Needs library(glmnet).  Does lasso, RR or Relaxed lasso.
+  ##slow        10 fold CV, 
+  # Simulates RMSE for lasso if pitype = 1, ridge regression if pitype = 0, ralxed lasso for pitype = 2.
+  # 1 <= k <= p-1, k is the number of nonnoise variables
+  # Uses five iid error distributions: 
+  # type = 1 for N(0,1) errors, 2 for t3 errors, 3 for exp(1) - 1 errors
+  # 4 for uniform(-1,1) errors, 5 for (1-eps) N(0,1) + eps N(0,(1+shift)^2) 
+  # errors.
+  # constant = 1 so there are p = q+1 coefficients
+  # need p > 1, beta = (1, 1, ..., 1, 0, ..., 0) with k+1 ones, p-k-1  zeroes
+  # Multiply x by A: for MVN data this results
+  # in a covariance matrix with eigenvector c(1, ..., 1)^T
+  # corresponding to the largest eigenvalue. As psi gets
+  # close to 1, the data clusters about the line in the
+  # direction of (1, ..., 1)^T. See Maronna and Zamar (2002).
+  # cor(X_i,X_j) = [2 psi +(q-2)psi^2]/[1 + (q-1)psi^2], i not = j
+  # when the correlation exists.
+  # set.seed(974) ##need p>2
+  
+  e_lr <- rep(NA, nruns)
+  e_ols <- rep(NA, nruns)
+  RMSE_lr <- 0
+  RMSE_ols <- 0
+  ols_coef2 <- rep(0, p)
+  ols_coef_sum <- rep(0, p)
+  lr_coef_sum <-  rep(0, p)
+  ols_coef_avg <- rep(0, p)
+  lr_coef_avg <- rep(0, p)
+  
+
+  q <- p-1
+  rho <- (2*psi + (q-2)*psi^2)/(1 + (q-1)*psi^2)
+  A <- matrix(psi,nrow=q,ncol=q)
+  diag(A) <- 1
+  b <- 0 * 1:q
+  b[1:k] <- 1 #b[1:0] acts like b[1:1] = b[1]
+  indx <- 1:n
+
+  
+  
+  for(i in 1:nruns) {
+    x <- matrix(rnorm(n * q), nrow = n, ncol = q)
+    x <- x %*% A
+    xf <- rnorm(q) %*% A
+    if(type == 1) {
+      y <- 1 + x %*% b + rnorm(n)
+      yf <- 1 + xf %*% b + rnorm(1)
+    }
+    if(type == 2) {
+      y <- 1 + x %*% b + rt(n, df = 3)
+      yf <- 1 + xf %*% b + rt(1, df = 3)
+    }
+    if(type == 3) {
+      y <- 1 + x %*% b + rexp(n) - 1
+      yf <- 1 + xf %*% b + rexp(1) - 1
+    }
+    if(type == 4) {
+      y <- 1 + x %*% b + runif(n, min = -1, max = 1)
+      yf <- 1 + xf %*% b + runif(1, min = -1, max = 1)
+    }
+    if(type == 5) {
+      err <- rnorm(n, sd = 1 + rbinom(n, 1, eps) * shift)
+      y <- 1 + x %*% b + err
+      ef <- rnorm(1, sd = 1 + rbinom(1, 1, eps) * shift)
+      yf <- 1 + xf %*% b + ef
+    } #make an MLR data set
+
+    # find the 10 fold CV lasso or ridge regression model when pitype == 1 || pitype == 0
+    if(pitype == 1 || pitype == 0){
+    out<-cv.glmnet(x, y, alpha = pitype)
+    lam <- out$lambda.min
+    out_coef <- predict(out,s = lam, type = "coefficients")
+    yfhat <- predict(out ,s = lam, newx = xf)
+    }
+    
+    # find the 10 fold CV relaxed lasso model when pitype == 2
+    if(pitype == 2){
+    rel_fit <- cv.glmnet(x, y, relax = TRUE) 
+    lam <- out$lambda.min
+    out_coef <- predict(rel_fit, s = lam, type = "coefficients")
+    yfhat <- predict(rel_fit, s = lam, newx = xf)
+      
+    }
+    
+    
+    # Filter out the non-zero coefficients
+    non_zero_indx <- which(out_coef[-1] != 0)
+    x_ols <- x[, non_zero_indx]
+  
+    ols_mod <- lm(y~x_ols) # Apply OLS on the selected predictors
+    ols_coef <- ols_mod$coefficients
+    
+    # For comparisons of coefficients 
+    non_zero_coef_indx <- which(out_coef != 0)
+    ols_coef2[non_zero_coef_indx] <- ols_coef 
+  
+    xf_ols <- xf[, non_zero_indx]
+    xf_ols <- append(xf_ols, 1, after = 0) # modified xf so it will work with ols
+    yfhat_ols <- xf_ols %*%  ols_coef 
+
+    e_lr[i] <-  (yf - yfhat)^2 
+    e_ols[i] <- (yf - yfhat_ols)^2
+    
+    
+    # Compare coefficients
+    ols_coef_sum <- ols_coef2 + ols_coef_sum
+    lr_coef_sum <-  out_coef + lr_coef_sum
+    
+  }
+  
+  # TRMSEs
+  RMSE_lr <- sqrt(sum(e_lr)/nruns)
+  RMSE_ols <- sqrt(sum(e_ols)/nruns)
+  
+  # Coef avgs
+  ols_coef_avg <-ols_coef_sum/nruns
+  lr_coef_avg <- lr_coef_sum/nruns
+  
+  diff_ols <- sum(abs(append(b, 1, after = 0) - ols_coef_avg)) # Sum of the absolute differences between b and new ols coefficients estimates
+  diff_lr <- sum(abs(append(b, 1, after = 0) - lr_coef_avg)) # Sum of the absolute differences between b and l or r coefficients estimates
+
+  list(RMSE_ols = RMSE_ols, RMSE_lr = RMSE_lr, diff_ols=diff_ols, diff_lr=diff_lr)
+}
