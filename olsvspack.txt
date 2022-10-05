@@ -49,8 +49,8 @@ olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1,
       yf <- 1 + xf %*% b + rnorm(1)
     }
     if(type == 2) {
-      y <- 1 + x %*% b + rt(n, df = 3)
-      yf <- 1 + xf %*% b + rt(1, df = 3)
+      y <- 1 + x %*% b + rt(n, df = 5)
+      yf <- 1 + xf %*% b + rt(1, df = 5)
     }
     if(type == 3) {
       y <- 1 + x %*% b + rexp(n) - 1

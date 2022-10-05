@@ -12,3 +12,4 @@ output: html_document
   * [R package for the OLS after VS Project](olsvspack.txt)
 
 * * *
+
