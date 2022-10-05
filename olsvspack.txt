@@ -5,7 +5,7 @@ olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1,
   # Simulates RMSE for lasso if pitype = 1, ridge regression if pitype = 0, ralxed lasso for pitype = 2.
   # 1 <= k <= p-1, k is the number of nonnoise variables
   # Uses five iid error distributions: 
-  # type = 1 for N(0,1) errors, 2 for t3 errors, 3 for exp(1) - 1 errors
+  # type = 1 for N(0,1) errors, 2 for t5 errors, 3 for exp(1) - 1 errors
   # 4 for uniform(-1,1) errors, 5 for (1-eps) N(0,1) + eps N(0,(1+shift)^2) 
   # errors.
   # constant = 1 so there are p = q+1 coefficients
