@@ -78,7 +78,7 @@ olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1,
     # find the 10 fold CV relaxed lasso model when pitype == 2
     if(pitype == 2){
     rel_fit <- cv.glmnet(x, y, relax = TRUE) 
-    lam <- out$lambda.min
+    lam <- rel_fit$lambda.min
     out_coef <- predict(rel_fit, s = lam, type = "coefficients")
     yfhat <- predict(rel_fit, s = lam, newx = xf)
       
