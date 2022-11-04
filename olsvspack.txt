@@ -1,3 +1,8 @@
+#################################################################################
+# To load this library: use source("https://hasthika.github.io/pipack.txt")   #
+# Need library(ggplot2), library(leaps)                                         #
+#################################################################################
+
 olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1, 
                      shift = 9, psi = 0.0, type = 1, alpha = 0.05, pitype = 1){
   # Needs library(glmnet).  Does lasso, RR or Relaxed lasso.
@@ -127,6 +132,116 @@ olsafterlrsim <- function(n = 10, p = 4, k = 2, nruns = 100, eps = 0.1,
 }
 
 
+
+
+olsavs <- function(x, y, method){
+  # olsavs des the olsavs method
+  # Needs library(glmnet).   
+  # need x as a model.matrix
+  # y - matrix of predictors
+  # y - response 
+  # Method - lasso, RR, Enet or Relaxed lasso (method = 1, method = 0, method = 0.5 or method = 2)
+  # 10 fold CV
+  
+    
+    # find the 10 fold CV lasso or ridge regression or enet model when method == 1 || method == 0 || method == 0.5
+    if(method == 1 || method == 0 || method == 0.5){
+      out<-cv.glmnet(x, y, alpha = method)
+      lam <- out$lambda.min
+      out_coef <- predict(out,s = lam, type = "coefficients")
+      #yfhat <- predict(out ,s = lam, newx = xf)
+    }
+    
+    # find the 10 fold CV relaxed lasso model when method == 2
+    if(method == 2){
+      rel_fit <- cv.glmnet(x, y, relax = TRUE) 
+      lam <- rel_fit$lambda.min
+      out_coef <- predict(rel_fit, s = lam, type = "coefficients")
+      #yfhat <- predict(rel_fit, s = lam, newx = xf)
+    }
+    
+    
+    # Filter out the non-zero coefficients
+    non_zero_indx <- which(out_coef[-1] != 0)
+    x_ols <- x[, non_zero_indx]
+    
+    ols_mod <- lm(y~x_ols) # Apply OLS on the selected predictors
+    ols_coef <- ols_mod$coefficients
+    
+ outPut <- list(ols_mod = ols_mod, ols_coef = ols_coef, out_coef = out_coef)
+ outPut$ols_mod
+    
+}
+
+
+olsavsPredict <- function(model, newx){
+  # Does predictions for olsavs
+
+xtest <- newx
+mod <- model
+
+names(mod$coefficients) = gsub(pattern = "x_ols", replacement = "", x = names(mod$coefficients))
+
+xtest1 <- xtest[, names(mod$coefficients[-1])] # good
+newxtest <- cbind(rep(1, nrow(xtest1)), xtest1) # Added a column of ones to make xtest a design matrix
+yhatTest <- newxtest %*% as.matrix(mod$coefficients) 
+
+pred <- list(yhat = yhatTest)
+pred
+
+}
+
+
+##################### Example ###############################################
+
+library(ISLR)
+library(lars)
+data(Auto)
+
+#set.seed(1111)
+
+##################### Splitting and preparing data ############################
+
+train = sample(c(TRUE, FALSE), size = 0.7*nrow(Auto), replace = TRUE)
+test <- (!train)
+
+xtrain <- model.matrix(mpg~., Auto)[train,]
+xtest <- model.matrix(mpg~., Auto)[test,] 
+
+ytrain <- Auto$mpg[train] 
+ytest <-  Auto$mpg[test] 
+
+y <- ytrain
+x <- xtrain
+
+##################### Applying olsavs ########################################
+
+#Method - lasso, RR, Enet or Relaxed lasso (method = 1, method = 0, method = 0.5 or method = 2)
+mod <- olsavs(x, y, method = 0.5) # Fitting the olsavs model
+mod
+summary(mod)
+
+# Predictions
+preds <- olsavsPredict(mod, xtest) # olsavsPredict: separate function for predictions
+
+# Test root mean square error for olsavs
+yhatTest <- preds$yhat
+RMSE_test_olsavs <- sqrt(mean((ytest - yhatTest)^2))
+RMSE_test_olsavs
+
+####################### lasso, ridge, relax, enet ###############################
+
+# Test root mean square error lasso, ridge, enet or relax (alpha = 1, 0, 0.5, relax: see below)
+# for relax lasso: cv.glmnet(x, y, relax = TRUE) 
+out<-cv.glmnet(x, y, alpha = 0.5)
+lam <- out$lambda.min
+out_coef <- predict(out, s = lam, type = "coefficients")
+yfhat <- predict(out, s = lam, newx = xtest)
+
+RMSE_test_l <- sqrt(mean((ytest - yfhat)^2))
+RMSE_test_l
+
+########################## End Example ####################################
 
 
 
