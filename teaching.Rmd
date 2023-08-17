@@ -5,9 +5,9 @@ output: html_document
 
 
 
-#### Spring 2023
+#### Fall 2023
 
-* [STT 4830 --- Mathematical Statistics](https://hasthika.github.io/STT4830/) 
+* [STT 4830 --- Mathematical Statistics](https://hasthika.github.io/STT4830/index.html) 
 
 <!--
 
