@@ -3,6 +3,14 @@ title: "**Teaching**"
 output: html_document
 ---
 
+
+
+#### Spring 2023
+
+* [STT 4830 --- Mathematical Statistics](https://hasthika.github.io/STT4830/) 
+
+<!--
+
 #### Spring 2023
 
 * [STT 3851 --- Statistical Data Analysis II](https://hasthika.github.io/STT3851/)
@@ -67,9 +75,9 @@ output: html_document
 
 ## **Future Classes**
 
-#### Fall 2023 
+#### Spring 2024 
 
-* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4880SP2021/) 
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
 
 
 ## **Steps Toward Success**
