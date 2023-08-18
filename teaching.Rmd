@@ -7,7 +7,7 @@ output: html_document
 
 #### Fall 2023
 
-* [STT 4830 --- Mathematical Statistics](https://hasthika.github.io/STT4830/index.html) 
+* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
 
 <!--
 
