@@ -5,11 +5,15 @@ output: html_document
 
 
 
-#### Fall 2023
+#### Spring 2024
 
-* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
+
 
 <!--
+#### Fall 2023
+* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
+
 
 #### Spring 2023
 
@@ -75,9 +79,10 @@ output: html_document
 
 ## **Future Classes**
 
-#### Spring 2024 
+#### Fall 2024 
 
-* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
+* TBA
+
 
 
 ## **Steps Toward Success**
