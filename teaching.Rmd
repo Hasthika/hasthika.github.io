@@ -5,9 +5,11 @@ output: html_document
 
 
 
-#### Spring 2024
+#### Fall 2024
 
-* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/) 
+* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
+
+* [STT 2810 --- Introduction to Statistics](https://asulearn.appstate.edu/)
 
 
 <!--
@@ -79,10 +81,14 @@ output: html_document
 
 ## **Future Classes**
 
-#### Fall 2024 
+#### Spring 2025 
 
-* TBA
+* I will be on parental leave during Spring 2025 
 
+
+#### Fall 2025 
+
+* TBD
 
 
 ## **Steps Toward Success**
