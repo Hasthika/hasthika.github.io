@@ -4,8 +4,7 @@ output: html_document
 ---
 
 
-
-#### Fall 2024
+#### Fall 2025
 
 * [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
 
@@ -13,6 +12,14 @@ output: html_document
 
 
 <!--
+#### Fall 2024
+
+* [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
+
+* [STT 2810 --- Introduction to Statistics](https://asulearn.appstate.edu/)
+
+
+
 #### Fall 2023
 * [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
 
@@ -81,14 +88,10 @@ output: html_document
 
 ## **Future Classes**
 
-#### Spring 2025 
 
-* I will be on parental leave during Spring 2025 
+#### Spring 2026 
 
-
-#### Fall 2025 
-
-* TBD
+* TBA
 
 
 ## **Steps Toward Success**
