@@ -5,6 +5,8 @@ output: html_document
 
 ## **R packages**
 
+  * [R package for the AHRLR Project](Rpacks/ahrlrpack.html)
+
   * [R package for the Prediction Interval Project](Rpacks/pipack.txt)
 
   * [R package for the HRLR Project](Rpacks/hrlrpack.txt)

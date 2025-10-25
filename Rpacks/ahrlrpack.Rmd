@@ -18,10 +18,7 @@ output:
 
 ```{r eval=FALSE}
 # Adaptive Hybrid Relaxed Lasso Regression (AHRLR) Simulation Study
-# Author: [Your Name]
-# Last updated: [Date]
 # Purpose: This script evaluates AHRLR and other penalized regression methods via simulations
-# Website: https://your-site.edu or GitHub link
 
 # ---------------------------------------------
 # Load Required Libraries
