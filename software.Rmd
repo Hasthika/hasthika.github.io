@@ -5,11 +5,11 @@ output: html_document
 
 ## **R packages**
 
-  * [R package for the Prediction Interval Project](pipack.txt)
+  * [R package for the Prediction Interval Project](Rpacks/pipack.txt)
 
-  * [R package for the HRLR Project](hrlrpack.txt)
+  * [R package for the HRLR Project](Rpacks/hrlrpack.txt)
   
-  * [R package for the OLS after VS Project](olsvspack.txt)
+  * [R package for the OLS after VS Project](Rpacks/olsvspack.txt)
 
 * * *
 

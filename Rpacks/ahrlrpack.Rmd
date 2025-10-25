@@ -1,0 +1,21 @@
+---
+title: "Adaptive Hybrid Relaxed Lasso Regression (AHRLR)"
+author: "Hasthika Rupasinghe"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  bookdown::bs4_book:
+    theme:
+      bootswatch: lux  # or try "flatly", "minty", "cosmo", etc.
+      base_font: "Lato"
+      heading_font: "Merriweather"
+      code_font: "Fira Code"
+    highlight: tango
+    css: custom.css  # optional, remove this line if you don’t use custom styling
+    toc_depth: 3
+    repo: https://github.com/yourusername/ahrlr-project  # optional
+    favicon: images/favicon.ico  # optional
+    includes:
+      in_header: _header.html  # optional HTML includes
+      after_body: _footer.html
+---
