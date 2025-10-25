@@ -1,21 +1,327 @@
 ---
-title: "Adaptive Hybrid Relaxed Lasso Regression (AHRLR)"
+title: "Adaptive Hybrid Relaxed Lasso Regression (AHRLR) Software"
+subtitle: ""
 author: "Hasthika Rupasinghe"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
 output:
-  bookdown::bs4_book:
-    theme:
-      bootswatch: lux  # or try "flatly", "minty", "cosmo", etc.
-      base_font: "Lato"
-      heading_font: "Merriweather"
-      code_font: "Fira Code"
+  html_document:
+    theme: readable
+    toc: true
+    toc_float:
+      collapsed: true
+      smooth_scroll: false
+    code_folding: show
     highlight: tango
-    css: custom.css  # optional, remove this line if you don’t use custom styling
-    toc_depth: 3
-    repo: https://github.com/yourusername/ahrlr-project  # optional
-    favicon: images/favicon.ico  # optional
-    includes:
-      in_header: _header.html  # optional HTML includes
-      after_body: _footer.html
 ---
+
+# Simulation Study
+
+```{r eval=FALSE}
+# Adaptive Hybrid Relaxed Lasso Regression (AHRLR) Simulation Study
+# Author: [Your Name]
+# Last updated: [Date]
+# Purpose: This script evaluates AHRLR and other penalized regression methods via simulations
+# Website: https://your-site.edu or GitHub link
+
+# ---------------------------------------------
+# Load Required Libraries
+# ---------------------------------------------
+library(glmnet)   # For penalized regression models
+library(MASS)     # For multivariate normal generation
+library(dplyr)    # For data manipulation
+
+# ---------------------------------------------
+# Set random seed for reproducibility
+# ---------------------------------------------
+set.seed(999)
+
+# ---------------------------------------------
+# Simulate high-dimensional regression data
+# ---------------------------------------------
+simulate_data <- function(n, p, beta, sigma, cor, dist_type, grouped = FALSE) {
+  # Create correlation structure
+  if (!grouped) {
+    Sigma <- cor ^ abs(outer(1:p, 1:p, "-"))  # AR(1)-type structure
+  } else {
+    Sigma <- diag(p)  # Block correlation for grouped predictors
+    group_size <- 10
+    for (g in seq(1, p, by = group_size)) {
+      idx <- g:min(g + group_size - 1, p)
+      Sigma[idx, idx] <- cor ^ abs(outer(idx, idx, "-"))
+    }
+  }
+  # Simulate design matrix X
+  X <- mvrnorm(n, mu = rep(0, p), Sigma = Sigma)
+
+  # Simulate error based on distribution
+  epsilon <- switch(dist_type,
+                    "normal" = rnorm(n),
+                    "t3" = rt(n, df = 3) / sqrt(3),
+                    "exp" = rexp(n) - 1,
+                    "unif" = runif(n, -sqrt(12)/2, sqrt(12)/2))
+  
+  # Generate response
+  y <- X %*% beta + sigma * epsilon
+  
+  list(X = X, y = y)
+}
+
+# ---------------------------------------------
+# Augment data for Relaxed/HRLR/AHRLR
+# ---------------------------------------------
+augment_data <- function(X, y, lambda2) {
+  p <- ncol(X)
+  X_aug <- rbind(X, sqrt(lambda2) * diag(p)) / sqrt(1 + lambda2)
+  y_aug <- c(y, rep(0, p))
+  list(X_aug = X_aug, y_aug = y_aug)
+}
+
+# ---------------------------------------------
+# Compute adaptive weights using Ridge
+# ---------------------------------------------
+get_adaptive_weights <- function(X, y, gamma = 1, eps = 1e-4) {
+  fit <- glmnet(X, y, alpha = 0, lambda = 1e-4, intercept = FALSE, standardize = FALSE)
+  beta_ridge <- as.vector(coef(fit))[-1]
+  beta_ridge[abs(beta_ridge) < eps] <- eps
+  1 / (abs(beta_ridge)^gamma)
+}
+
+# ---------------------------------------------
+# Run one replication for a given setting
+# ---------------------------------------------
+run_one <- function(n, p, beta, sigma, cor, dist_type, grouped, strong_signals = which(beta != 0)) {
+  s <- length(strong_signals)
+  data <- simulate_data(n, p, beta, sigma, cor, dist_type, grouped)
+  X <- scale(data$X)
+  y <- scale(data$y)
+
+  # Train/test split
+  train_idx <- 1:(n/2)
+  test_idx <- (n/2 + 1):n
+  X_train <- X[train_idx, ]; y_train <- y[train_idx]
+  X_test  <- X[test_idx, ];  y_test  <- y[test_idx]
+  
+  lambda2 <- 1  # Relaxation parameter
+
+  # Internal evaluation function
+  method_eval <- function(model_fit, newx, true_beta) {
+    pred <- predict(model_fit, newx = newx, s = "lambda.min")
+    rmse <- sqrt(mean((y_test - pred)^2))
+    coef_vec <- as.vector(coef(model_fit, s = "lambda.min"))[-1]
+    selected <- which(coef_vec != 0)
+    tp <- sum(selected %in% strong_signals)
+    fp <- sum(!(selected %in% strong_signals))
+    fn <- s - tp
+    tn <- (p - s) - fp
+    recall <- tp / s
+    conf_acc <- (tp + tn) / p
+    list(rmse = rmse, tp = tp, fp = fp, recall = recall, conf_acc = conf_acc)
+  }
+
+  # Fit models
+  w <- get_adaptive_weights(X_train, y_train)
+  aug <- augment_data(X_train, y_train, lambda2)
+  w_aug <- get_adaptive_weights(X_train, y_train)
+
+  fit_lasso     <- cv.glmnet(X_train, y_train, alpha = 1)
+  fit_ridge     <- cv.glmnet(X_train, y_train, alpha = 0)
+  fit_enet      <- cv.glmnet(X_train, y_train, alpha = 0.5)
+  fit_adalasso  <- cv.glmnet(X_train, y_train, alpha = 1, penalty.factor = w)
+  fit_hrlr      <- cv.glmnet(aug$X_aug, aug$y_aug, alpha = 1, intercept = FALSE, standardize = FALSE)
+  fit_ahr       <- cv.glmnet(aug$X_aug, aug$y_aug, alpha = 1, penalty.factor = w_aug, intercept = FALSE, standardize = FALSE)
+
+  # Store evaluations
+  evals <- list(
+    Lasso = method_eval(fit_lasso, X_test, beta),
+    Ridge = method_eval(fit_ridge, X_test, beta),
+    ElasticNet = method_eval(fit_enet, X_test, beta),
+    AdaptiveLasso = method_eval(fit_adalasso, X_test, beta),
+    HRLR = method_eval(fit_hrlr, X_test / sqrt(1 + lambda2), beta),
+    AHRLR = method_eval(fit_ahr, X_test / sqrt(1 + lambda2), beta)
+  )
+  
+  # Return one-row-per-method data frame
+  do.call(rbind, lapply(names(evals), function(m) {
+    cbind(Method = m, as.data.frame(evals[[m]]))
+  }))
+}
+
+# ---------------------------------------------
+# Run all simulation configurations
+# ---------------------------------------------
+run_all_conditions <- function(nrep = 1000) {
+  settings <- expand.grid(
+    dist_type = c("normal"),        # Can be extended to "t3", "exp", "unif"
+    grouped   = c(FALSE, TRUE)      # Whether predictors are grouped
+  )
+  
+  # Simulation parameters
+  n <- 40
+  p <- 500
+  beta <- c(6, 4, 2, 0.5, rep(0, p - 4))  # True coefficient vector
+  sigma <- 3
+  s <- 4  # Number of non-zero signals
+
+  results <- list()
+
+  for (i in seq_len(nrow(settings))) {
+    dist_type <- settings$dist_type[i]
+    grouped   <- settings$grouped[i]
+
+    # Repeat the simulation nrep times
+    reps <- replicate(nrep, run_one(n, p, beta, sigma, cor = 0.7, dist_type, grouped), simplify = FALSE)
+    df <- bind_rows(reps)
+    df$Dist <- dist_type
+    df$Grouped <- grouped
+    results[[i]] <- df
+  }
+
+  # Combine and summarize results
+  all_results <- bind_rows(results)
+  summary <- all_results %>%
+    group_by(Dist, Grouped, Method) %>%
+    summarise(
+      Median_RMSE   = median(rmse),
+      SE_RMSE       = sd(rmse) / sqrt(n()),
+      Avg_TP        = mean(tp),
+      Avg_FP        = mean(fp),
+      Recall        = mean(recall, na.rm = TRUE),
+      Conf_Accuracy = mean(conf_acc, na.rm = TRUE),
+      .groups = "drop"
+    )
+
+  # Save results to CSV
+  write.csv(summary, "full_adaptive_sim_summary.csv", row.names = FALSE)
+  write.csv(all_results, "full_adaptive_sim_raw.csv", row.names = FALSE)
+
+  return(summary)
+}
+
+# ---------------------------------------------
+# Run full simulation
+# ---------------------------------------------
+extended_summary <- run_all_conditions()
+print(extended_summary)
+
+```
+
+
+# Real Data Example
+
+```{r eval=FALSE, message=FALSE, comment=NA}
+#########################################################
+# Real-World Application of AHRLR: Body Fat Data Example
+# Description:
+#   This script compares AHRLR with other penalized regression
+#   methods on the cleaned body fat dataset (Johnson, 1996).
+#   Data Source:
+#   https://raw.githubusercontent.com/alanarnholt/MISCD/master/bodyfatClean.csv
+#########################################################
+
+# ---------------------------------------------
+# Load Required Libraries
+# ---------------------------------------------
+library(glmnet)     # Lasso, Ridge, Elastic Net
+library(readr)      # Read data from URL
+library(dplyr)      # Data manipulation
+library(stringr)    # String operations
+library(tidyverse)  # For full piping and utilities
+
+# ---------------------------------------------
+# Load and Clean the Dataset
+# ---------------------------------------------
+url <- "https://raw.githubusercontent.com/alanarnholt/MISCD/master/bodyfatClean.csv"
+data <- read_csv(url)
+data <- na.omit(data)
+
+# ---------------------------------------------
+# Define Response and Predictor Variables
+# ---------------------------------------------
+y <- scale(data$brozek_C)   # Standardized response: Body fat %
+X <- scale(data %>% select(-brozek_C) %>% as.matrix())  # Standardized predictors
+
+# ---------------------------------------------
+# Train/Test Split (60/40)
+# ---------------------------------------------
+set.seed(999)  # Reproducibility
+n <- nrow(X)
+train_idx <- sample(seq_len(n), size = floor(0.6 * n))
+test_idx <- setdiff(seq_len(n), train_idx)
+
+X_train <- X[train_idx, ]
+X_test  <- X[test_idx, ]
+y_train <- y[train_idx]
+y_test  <- y[test_idx]
+
+# ---------------------------------------------
+# General Model Fitting Function
+# ---------------------------------------------
+fit_model <- function(X_train, y_train, X_test, y_test, method, lambda2 = 0.01) {
+  if (method == "Ridge") {
+    fit <- cv.glmnet(X_train, y_train, alpha = 0)
+    
+  } else if (method == "Lasso") {
+    fit <- cv.glmnet(X_train, y_train, alpha = 1)
+    
+  } else if (method == "ElasticNet") {
+    fit <- cv.glmnet(X_train, y_train, alpha = 0.5)
+    
+  } else if (method == "AdaptiveLasso") {
+    fit_ridge <- glmnet(X_train, y_train, alpha = 0)
+    beta_ridge <- coef(fit_ridge, s = 0.01)[-1]
+    weights <- 1 / (abs(beta_ridge) + 1e-4)
+    fit <- cv.glmnet(X_train, y_train, alpha = 1, penalty.factor = weights)
+    
+  } else if (method == "HRLR") {
+    X_aug <- rbind(X_train, sqrt(lambda2) * diag(ncol(X_train))) / sqrt(1 + lambda2)
+    y_aug <- c(y_train, rep(0, ncol(X_train))) / sqrt(1 + lambda2)
+    fit <- cv.glmnet(X_aug, y_aug, alpha = 1)
+    X_test <- X_test / sqrt(1 + lambda2)
+    
+  } else if (method == "AHRLR") {
+    fit_ridge <- glmnet(X_train, y_train, alpha = 0)
+    beta_ridge <- coef(fit_ridge, s = 0.01)[-1]
+    weights <- 1 / (abs(beta_ridge) + 1e-4)
+    X_aug <- rbind(X_train, sqrt(lambda2) * diag(ncol(X_train))) / sqrt(1 + lambda2)
+    y_aug <- c(y_train, rep(0, ncol(X_train))) / sqrt(1 + lambda2)
+    fit <- cv.glmnet(X_aug, y_aug, alpha = 1, penalty.factor = weights)
+    X_test <- X_test / sqrt(1 + lambda2)
+  }
+
+  # -----------------------------------------
+  # Model Evaluation
+  # -----------------------------------------
+  y_pred <- predict(fit, newx = X_test, s = "lambda.min")
+  rmse <- sqrt(mean((y_test - y_pred)^2))
+
+  selected_vars <- which(coef(fit, s = "lambda.min")[-1] != 0)
+
+  list(
+    rmse = rmse,
+    selected_count = length(selected_vars),
+    selected_names = colnames(X_train)[selected_vars]
+  )
+}
+
+# ---------------------------------------------
+# Run All Methods and Summarize Results
+# ---------------------------------------------
+methods <- c("Lasso", "Ridge", "ElasticNet", "AdaptiveLasso", "HRLR", "AHRLR")
+results <- lapply(methods, function(m) fit_model(X_train, y_train, X_test, y_test, method = m, lambda2 = 0.001))
+
+# Create Summary Table
+results_summary <- data.frame(
+  Method = methods,
+  RMSE = sapply(results, `[[`, "rmse"),
+  Selected_Variables = sapply(results, `[[`, "selected_count"),
+  Variables_Names = sapply(results, function(x) paste(x$selected_names, collapse = ", "))
+)
+
+# Display Output
+print(results_summary)
+
+# Optional: Save results
+write.csv(results_summary, "bodyfat_model_comparison.csv", row.names = FALSE)
+
+```
+
