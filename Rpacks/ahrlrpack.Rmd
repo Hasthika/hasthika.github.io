@@ -14,6 +14,30 @@ output:
     highlight: tango
 ---
 
+
+# Quick Start Guide
+
+```{r eval=FALSE}
+# Quick Start ----------------------------
+
+# 1. Load AHRLR functions
+source("https://hasthika.github.io/Rpacks/ahrlr_fit.txt")
+
+# 2. Fit model
+fit <- fit_AHRLR(X, y, lambda2 = 1)
+
+# 3. Inspect selected variables
+fit$selected_vars
+
+# 4. Predict on new data
+yhat <- predict_AHRLR(fit, newx = X_new)
+
+# 5. Optional summary
+summarize_AHRLR(fit, X_test = X_new, y_test = y_new)
+
+```
+
+
 # Simulation Study
 
 ```{r eval=FALSE}

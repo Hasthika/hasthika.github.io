@@ -1,0 +1,213 @@
+############################################################
+# AHRLR quick-use script
+# Version: 2025-10-31
+# Author: Hasthika Rupasinghe
+#
+# Usage:
+#   source("https://hasthika.github.io/Rpacks/ahrlr_fit.txt")
+#
+#   # X: n x p matrix of predictors
+#   # y: numeric response (length n)
+#
+#   fit <- fit_AHRLR(X, y, lambda2 = 1)
+#   yhat <- predict_AHRLR(fit, newx = Xnew)
+#   fit$selected_vars
+#
+############################################################
+
+suppressPackageStartupMessages({
+  library(glmnet)
+})
+
+# ----------------------------------------------------------
+# Helper: compute adaptive weights from a ridge fit
+# ----------------------------------------------------------
+.get_adaptive_weights <- function(X, y, gamma = 1, eps = 1e-4) {
+  # fit a small-penalty ridge to get pilot coefficients
+  ridge_fit <- glmnet(X, y,
+                      alpha = 0,
+                      lambda = 1e-4,
+                      intercept = FALSE,
+                      standardize = FALSE)
+  beta_ridge <- as.vector(coef(ridge_fit))[-1]
+
+  # avoid 0 weights (infinite penalty)
+  beta_ridge[abs(beta_ridge) < eps] <- eps
+
+  w <- 1 / (abs(beta_ridge)^gamma)
+  return(w)
+}
+
+# ----------------------------------------------------------
+# Helper: augmentation step for HRLR / AHRLR
+# We solve a relaxed lasso by adding sqrt(lambda2)*I rows
+# ----------------------------------------------------------
+.augment_design <- function(X, y, lambda2) {
+  p <- ncol(X)
+
+  X_aug <- rbind(
+    X,
+    sqrt(lambda2) * diag(p)
+  ) / sqrt(1 + lambda2)
+
+  y_aug <- c(
+    y,
+    rep(0, p)
+  ) / sqrt(1 + lambda2)
+
+  list(X_aug = X_aug, y_aug = y_aug)
+}
+
+# ----------------------------------------------------------
+# Main fitting function for AHRLR
+#
+# Arguments:
+#   X        : n x p numeric matrix (will be centered/scaled inside)
+#   y        : numeric response (length n, will be centered/scaled)
+#   lambda2  : relaxation/shrinkage control for the second stage
+#              (typical values ~ 0.1 to 1; higher => more relaxation)
+#
+# Returns:
+#   A list with:
+#     - cvfit          : cv.glmnet object for the final AHRLR fit
+#     - lambda_min     : chosen lambda
+#     - coef_hat       : coefficient vector at lambda.min (p-length)
+#     - selected_idx   : which predictors are nonzero
+#     - selected_vars  : colnames(X) for selected predictors
+#     - center/scale   : centering/scaling info for future prediction
+#     - lambda2        : the lambda2 used
+#
+# Notes:
+#   This function does NOT assume an intercept in glmnet because
+#   we manually center/scale.
+# ----------------------------------------------------------
+fit_AHRLR <- function(X, y, lambda2 = 1, gamma = 1) {
+
+  # check inputs
+  if (!is.matrix(X)) {
+    X <- as.matrix(X)
+  }
+  if (!is.numeric(y)) {
+    y <- as.numeric(y)
+  }
+
+  # store column names (for later)
+  varnames <- colnames(X)
+  if (is.null(varnames)) {
+    varnames <- paste0("V", seq_len(ncol(X)))
+    colnames(X) <- varnames
+  }
+
+  # center/scale X and y
+  X_center <- apply(X, 2, mean)
+  X_scale  <- apply(X, 2, sd)
+  X_scale[X_scale == 0] <- 1  # guard against constant columns
+  X_std <- scale(X, center = X_center, scale = X_scale)
+
+  y_center <- mean(y)
+  y_scale  <- sd(y)
+  if (y_scale == 0) y_scale <- 1
+  y_std <- as.numeric(scale(y, center = y_center, scale = y_scale))
+
+  # adaptive weights from ridge on standardized training data
+  w_adapt <- .get_adaptive_weights(X_std, y_std, gamma = gamma)
+
+  # augmented design for relaxed stage
+  aug <- .augment_design(X_std, y_std, lambda2 = lambda2)
+
+  # final adaptive relaxed lasso fit (AHRLR)
+  cvfit <- cv.glmnet(
+    aug$X_aug,
+    aug$y_aug,
+    alpha = 1,
+    penalty.factor = w_adapt,
+    intercept = FALSE,
+    standardize = FALSE
+  )
+
+  # extract coefficients at lambda.min
+  lambda_min <- cvfit$lambda.min
+  beta_full  <- as.vector(coef(cvfit, s = "lambda.min"))[-1]
+
+  selected_idx  <- which(beta_full != 0)
+  selected_vars <- varnames[selected_idx]
+
+  out <- list(
+    cvfit          = cvfit,
+    lambda_min     = lambda_min,
+    coef_hat       = beta_full,
+    selected_idx   = selected_idx,
+    selected_vars  = selected_vars,
+    X_center       = X_center,
+    X_scale        = X_scale,
+    y_center       = y_center,
+    y_scale        = y_scale,
+    lambda2        = lambda2,
+    gamma          = gamma,
+    varnames       = varnames
+  )
+
+  class(out) <- "AHRLR_fit"
+  return(out)
+}
+
+# ----------------------------------------------------------
+# Prediction function for AHRLR objects
+#
+# Arguments:
+#   object : output of fit_AHRLR()
+#   newx   : new data matrix (rows = new obs)
+#
+# Returns:
+#   numeric vector of predictions on the original y scale
+# ----------------------------------------------------------
+predict_AHRLR <- function(object, newx) {
+
+  if (!inherits(object, "AHRLR_fit")) {
+    stop("predict_AHRLR: object must come from fit_AHRLR()")
+  }
+
+  if (!is.matrix(newx)) {
+    newx <- as.matrix(newx)
+  }
+
+  # apply the same centering/scaling as training
+  Xc <- sweep(newx, 2, object$X_center, FUN = "-")
+  Xcs <- sweep(Xc,   2, object$X_scale,  FUN = "/")
+
+  # IMPORTANT: during fit we augmented X and divided by sqrt(1+lambda2)
+  Xcs_augscale <- Xcs / sqrt(1 + object$lambda2)
+
+  pred_std <- as.numeric(
+    predict(object$cvfit,
+            newx = Xcs_augscale,
+            s = object$lambda_min)
+  )
+
+  # un-standardize prediction to original y scale
+  pred_orig <- pred_std * object$y_scale + object$y_center
+  return(pred_orig)
+}
+
+# ----------------------------------------------------------
+# Convenience: summarize the fit
+#
+# Prints RMSE on supplied test data (optional) and selected vars.
+# ----------------------------------------------------------
+summarize_AHRLR <- function(fit, X_test = NULL, y_test = NULL) {
+  cat("AHRLR model summary\n")
+  cat("-------------------\n")
+  cat("lambda.min:", fit$lambda_min, "\n")
+  cat("Selected variables (", length(fit$selected_idx), "):\n", sep = "")
+  if (length(fit$selected_vars) == 0) {
+    cat("  <none>\n")
+  } else {
+    cat(" ", paste(fit$selected_vars, collapse = ", "), "\n")
+  }
+
+  if (!is.null(X_test) && !is.null(y_test)) {
+    yhat <- predict_AHRLR(fit, X_test)
+    rmse <- sqrt(mean((y_test - yhat)^2))
+    cat("Test RMSE:", round(rmse, 4), "\n")
+  }
+}
