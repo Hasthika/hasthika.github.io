@@ -10,6 +10,8 @@ output: html_document
 
 * [STT 2810 --- Introduction to Statistics](https://asulearn.appstate.edu/)
 
+* [Machine Learning Workshop 2025](mainDoc.html)
+
 
 <!--
 #### Fall 2024
@@ -91,7 +93,7 @@ output: html_document
 
 #### Spring 2026 
 
-* TBA
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/!STT4880SP2021!/) 
 
 
 ## **Steps Toward Success**
