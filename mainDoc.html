@@ -11,7 +11,7 @@
 
 <meta name="author" content="Hasthika Rupasinghe and Lasanthi Watagoda" />
 
-<meta name="date" content="2025-11-02" />
+<meta name="date" content="2025-11-05" />
 
 <title>From Data to Decisions: Supervised Machine Learning with R</title>
 
@@ -4163,7 +4163,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">From Data to Decisions: Supervised Machine
 Learning with R</h1>
 <h4 class="author">Hasthika Rupasinghe and Lasanthi Watagoda</h4>
-<h4 class="date">2025-11-02</h4>
+<h4 class="date">2025-11-05</h4>
 
 </div>
 
@@ -4204,10 +4204,10 @@ permafrost, and landscape information.</p>
 <p>The <strong>primary variable of interest</strong> is the <strong>mean
 groundwater contribution fraction (<code>bfi_mean</code>)</strong>, It
 measures <strong>how much of the stream’s flow comes from
-groundwater</strong> rather than rain or snowmelt. <strong>Higher
-values</strong> mean the stream is fed mostly by groundwater, while
-<strong>lower values</strong> mean it’s mainly fed by surface
-runoff.</p>
+groundwater</strong> rather than rain or snowmelt running over the land
+surface (surface flow). <strong>Higher values</strong> mean the stream
+is fed mostly by groundwater, while <strong>lower values</strong> mean
+it’s mainly fed by surface flow.</p>
 <p>A second response variable,
 <strong><code>bfi_perchangeperyr</code></strong>, quantifies the
 <strong>annual trend in groundwater contribution</strong> over the same
@@ -4561,14 +4561,6 @@ summary of how well a model performs on unseen data.</p>
 <hr />
 <div id="linear-regression---baseline-model" class="section level2">
 <h2>(1) LINEAR REGRESSION - Baseline model</h2>
-<p>Excellent idea — that will really strengthen your workshop handout!
-Showing both the <strong>model equation</strong> and its
-<strong>optimization objective</strong> helps participants see what each
-method is actually doing under the hood, while still keeping the math
-intuitive.</p>
-<p>Here’s a clean, workshop-ready Markdown version for <strong>Linear
-Regression</strong> that balances clarity with rigor.</p>
-<hr />
 <div id="linear-regression" class="section level3">
 <h3><strong>Linear Regression</strong></h3>
 <p>Linear regression models the relationship between a response variable
