@@ -11,7 +11,7 @@
 
 <meta name="author" content="Hasthika Rupasinghe and Lasanthi Watagoda" />
 
-<meta name="date" content="2025-11-09" />
+<meta name="date" content="2025-11-10" />
 
 <title>From Data to Decisions: Supervised Machine Learning with R</title>
 
@@ -4163,7 +4163,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">From Data to Decisions: Supervised Machine
 Learning with R</h1>
 <h4 class="author">Hasthika Rupasinghe and Lasanthi Watagoda</h4>
-<h4 class="date">2025-11-09</h4>
+<h4 class="date">2025-11-10</h4>
 
 </div>
 
@@ -5260,13 +5260,22 @@ captures local permafrost thermal effects.<br />
 (−)</strong> reduce groundwater contributions, consistent with longer
 flow paths and lower infiltration capacity.<br />
 </li>
-<li><strong>Stream order (quadratic and cubic contrasts)</strong> allow
-for mid-order channels to show nonlinear responses — often where surface
-and groundwater exchange is most dynamic.<br />
-</li>
 <li><strong>Permeability (positive)</strong> reinforces that
 higher-conductivity soils enhance baseflow contribution.</li>
-</ul></li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>Stream order (quadratic and cubic contrasts)</strong>
+capture <em>curved</em> or <em>non-linear</em> patterns in how
+groundwater contribution changes across the river network. Instead of
+assuming that larger streams always have more or less groundwater input,
+these terms allow the model to represent a hump-shaped relationship —
+where <strong>mid-sized streams (not the smallest headwaters or largest
+rivers)</strong> often show the strongest interaction between surface
+and groundwater. This reflects the idea that intermediate-order streams
+tend to be the most hydrologically connected zones in a watershed.</li>
+</ul>
+</blockquote></li>
 </ol>
 <hr />
 <ol start="3" style="list-style-type: decimal">
@@ -5306,10 +5315,12 @@ data (Evaluation)</h3>
 <span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>    <span class="st">&quot; | R-squared:&quot;</span>, <span class="fu">round</span>(rsq_enet,<span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ENET RMSE: 0.117  | R-squared: 0.14</code></pre>
-<p>The <strong>Elastic Net model</strong> achieved nearly the same
-predictive accuracy as LASSO (RMSE ≈ 0.117, R² ≈ 0.14) but used
-<strong>fewer predictors</strong>, emphasizing its strength in handling
-multicollinearity and favoring stability over model complexity.</p>
+<p>The Elastic Net model achieved predictive accuracy comparable to the
+LASSO model (RMSE ≈ 0.117, R² ≈ 0.14), while maintaining a more stable
+solution in the presence of correlated predictors. This highlights
+Elastic Net’s advantage — it balances model simplicity and robustness,
+capturing key relationships without overfitting or losing important
+correlated variables.</p>
 <hr />
 </div>
 </div>
