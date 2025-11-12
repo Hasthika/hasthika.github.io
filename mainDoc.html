@@ -11,7 +11,7 @@
 
 <meta name="author" content="Hasthika Rupasinghe and Lasanthi Watagoda" />
 
-<meta name="date" content="2025-11-10" />
+<meta name="date" content="2025-11-11" />
 
 <title>From Data to Decisions: Supervised Machine Learning with R</title>
 
@@ -4163,7 +4163,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">From Data to Decisions: Supervised Machine
 Learning with R</h1>
 <h4 class="author">Hasthika Rupasinghe and Lasanthi Watagoda</h4>
-<h4 class="date">2025-11-10</h4>
+<h4 class="date">2025-11-11</h4>
 
 </div>
 
@@ -4311,8 +4311,8 @@ and labels — making it easy to load and use with a single command. This
 ensures everyone works with the <strong>same, clean, and consistent
 dataset</strong> without worrying about formatting or import issues.</p>
 <hr />
-<div id="loading-data-from-an-url" class="section level2">
-<h2>Loading data from an URL</h2>
+<div id="loading-a-downloaded-data-set" class="section level2">
+<h2>Loading a downloaded data set</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="do">## ---- (1) Load cleaned dataset ----</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co"># If you saved as .rds:</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;Evans_clean.rds&quot;</span>)</span>
@@ -4320,8 +4320,8 @@ dataset</strong> without worrying about formatting or import issues.</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># or, if you saved as .csv:</span></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># data &lt;- read.csv(&quot;Evans_clean.csv&quot;)</span></span></code></pre></div>
 </div>
-<div id="look-at-the-structure-of-the-dataset" class="section level2">
-<h2>Look at the structure of the dataset</h2>
+<div id="look-at-the-structure-of-the-data-set" class="section level2">
+<h2>Look at the structure of the data set</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">str</span>(data)              <span class="co"># check structure (types, dimensions)</span></span></code></pre></div>
 <pre><code>## tibble [9,972 × 35] (S3: tbl_df/tbl/data.frame)
 ##  $ bfi_mean                       : num [1:9972] 0.485 0.535 0.286 0.49 0.491 0.451 0.408 0.27 0.473 0.438 ...
@@ -5558,59 +5558,146 @@ nonlinear model</h2>
 <div id="interpreting-the-regression-tree" class="section level3">
 <h3><strong>Interpreting the Regression Tree</strong></h3>
 <p>This regression tree predicts the <strong>mean groundwater
-contribution (<code>bfi_mean</code>)</strong> based on climate,
-location, and landscape variables. Each split represents a
-<strong>decision rule</strong> that divides the data into more
-homogeneous groups — smaller boxes with similar <code>bfi_mean</code>
-values.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Top split — mean annual temperature</strong> The first
-(and strongest) split is on
-<strong><code>mean_annual_temp_deg_c</code></strong>, dividing cold
-regions (below −9.5 °C) from warmer ones. → This shows that
-<strong>temperature is the most important factor</strong> influencing
-groundwater contribution across the study area.</p></li>
-<li><p><strong>Left branch — colder regions (≤ −9.5 °C)</strong></p>
+contribution (<code>bfi_mean</code>)</strong> using climate, location,
+and watershed variables.<br />
+Each split represents a <strong>decision rule</strong> that divides the
+data into groups with more similar groundwater contributions.<br />
+The predicted value at each terminal node (<code>yval</code>) is the
+<strong>average <code>bfi_mean</code></strong> for sites that meet all
+conditions along that branch.</p>
+<hr />
+<div id="top-split-mean-annual-temperature" class="section level4">
+<h4>1. <strong>Top split — Mean annual temperature</strong></h4>
+<p>The first and most important division occurs at<br />
+<code>mean_annual_temp_deg_c &lt; -9.545</code>, separating <strong>very
+cold (Arctic)</strong> regions from <strong>warmer (sub-Arctic to
+temperate)</strong> ones.<br />
+This confirms that <strong>temperature is the dominant control</strong>
+on groundwater contribution across the study area.</p>
 <ul>
-<li>For these colder areas, the next important variables are
-<strong><code>r_net_pct_change_annual</code></strong> (net radiation
-trend) and <strong><code>upstrm_drainage_area_km2</code></strong>.</li>
-<li>Sites with <strong>low temperatures and small drainage
-areas</strong> tend to have <em>lower groundwater contributions</em>
-(values around 0.35–0.5).</li>
-<li>Higher baseflow values (~0.59) occur when snow cover is low and
-drainage areas are larger — suggesting greater connectivity and
-thaw-driven flow.</li>
-</ul></li>
-<li><p><strong>Right branch — warmer regions (&gt; −9.5 °C)</strong></p>
+<li><strong>Cold regions (≤ −9.5 °C):</strong> average groundwater
+contribution ≈ 0.50<br />
+</li>
+<li><strong>Warmer regions (&gt; −9.5 °C):</strong> average groundwater
+contribution ≈ 0.58</li>
+</ul>
+<p>Warmer basins tend to have <strong>greater groundwater
+influence</strong>, consistent with permafrost thaw and deeper
+infiltration.</p>
+<hr />
+</div>
+<div id="cold-branch-9.5-c" class="section level4">
+<h4>2. <strong>Cold branch (≤ −9.5 °C)</strong></h4>
+<p>Within the cold group, variation depends on <strong>net radiation
+trend</strong> and <strong>drainage area</strong>.</p>
 <ul>
-<li>In warmer zones, <strong>temperature</strong> still drives
-differences, but elevation (<code>elev_m</code>) and drainage area
-matter too.</li>
-<li>Lower-elevation and mid-temperature regions have <strong>higher
-baseflow fractions (0.6–0.7)</strong>, while very high or low
-temperatures correspond to lower groundwater contributions.</li>
-</ul></li>
-<li><p><strong>Overall pattern</strong> The tree reveals that
-<strong>temperature</strong>, <strong>drainage area</strong>, and
-<strong>snow cover</strong> are the key controls shaping groundwater
-contribution.</p>
+<li><p><strong>High net radiation trend (r_net_pct_change_annual ≥
+0.385)</strong> and <strong>very low ground temperatures (magt_deg_c
+&lt; −6.3)</strong><br />
+→ extremely low groundwater contributions (≈ 0.35–0.38).<br />
+These are the coldest, most frozen landscapes with minimal subsurface
+flow.</p></li>
+<li><p><strong>Cold areas with weaker radiation increase and larger
+drainage areas (≥ 37 km²)</strong><br />
+→ moderately higher groundwater values (≈ 0.52).</p></li>
+<li><p><strong>Small, cold basins (&lt; 37 km²)</strong><br />
+→ the highest BFI in the cold branch (≈ 0.59), suggesting that
+<strong>small, well-connected headwaters</strong> can still maintain
+notable groundwater input when not fully frozen.</p></li>
+</ul>
+<hr />
+</div>
+<div id="warmer-branch-9.5-c" class="section level4">
+<h4>3. <strong>Warmer branch (&gt; −9.5 °C)</strong></h4>
+<p>For warmer watersheds, <strong>drainage area</strong> again drives
+the next major split:</p>
 <ul>
-<li><strong>Cold, high-latitude, small catchments → low
-BFI</strong></li>
-<li><strong>Moderate temperature, larger basins → higher BFI</strong>
-These patterns align well with hydrologic intuition — warmer, larger
-catchments allow more sustained groundwater discharge.</li>
+<li><strong>Larger basins (≥ 42 km²)</strong> dominate the warm
+branch.<br />
+Within them, temperature and latitude refine predictions:
+<ul>
+<li><strong>Moderately cold sub-basins (−9.5 °C &lt; T &lt; −0.1
+°C)</strong> have BFI ≈ 0.55.<br />
+</li>
+<li><strong>Lower-latitude, snow-rich sites</strong> (e.g.,
+<code>mean_annual_snow_cm ≥ 4 cm</code>) show distinct contrasts:
+<ul>
+<li>When <strong>VPD &lt; 0.53 kPa</strong>, groundwater fraction ≈ 0.37
+(drier air, less infiltration).<br />
+</li>
+<li>When <strong>VPD ≥ 0.53 kPa</strong>, groundwater fraction rises to
+≈ 0.52.<br />
+</li>
 </ul></li>
-</ol>
+<li><strong>High-latitude, slightly warmer zones (T &gt; −3.9
+°C)</strong> reach the highest values (~0.60), reflecting
+<strong>enhanced thaw-related recharge</strong>.</li>
+</ul></li>
+<li><strong>Smaller warm basins (&lt; 42 km²)</strong><br />
+split on temperature again:
+<ul>
+<li><strong>Cooler small basins (T &lt; −4.8 °C)</strong> have moderate
+BFI (~0.60).<br />
+</li>
+<li><strong>Warmer small basins (T ≥ −4.8 °C)</strong> reach the highest
+BFI (~0.69), showing that <strong>small, warm catchments</strong> allow
+strong groundwater exchange.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="overall-pattern" class="section level4">
+<h4>4. <strong>Overall pattern</strong></h4>
+<p>The tree highlights a <strong>hierarchical climate–basin size
+control</strong>:</p>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="26%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dominant Condition</th>
+<th>Typical BFI</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Very cold (≤ −9.5 °C), frozen soils</td>
+<td>0.35–0.45</td>
+<td>Minimal groundwater contribution</td>
+</tr>
+<tr class="even">
+<td>Cold, larger basins</td>
+<td>0.50–0.53</td>
+<td>Slightly increased baseflow buffering</td>
+</tr>
+<tr class="odd">
+<td>Moderate temperature, large basins</td>
+<td>0.55–0.60</td>
+<td>Sustained groundwater flow</td>
+</tr>
+<tr class="even">
+<td>Warm, small basins</td>
+<td>0.65–0.70</td>
+<td>Strongest groundwater–surface exchange</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <p><strong>In short:</strong></p>
 <blockquote>
-<p>The tree captures clear, interpretable thresholds in temperature and
-basin size that separate low- and high-groundwater systems. It
-highlights how decision trees can expose <strong>simple, rule-based
-patterns</strong> that are easy to explain and visualize — even in
-complex environmental datasets.</p>
+<p>The regression tree reveals that <strong>temperature</strong> and
+<strong>basin size</strong> are the two most powerful predictors of
+groundwater contribution, with additional refinements from <strong>net
+radiation, snow, and latitude</strong>.<br />
+Groundwater influence <strong>increases systematically with warming and
+decreasing permafrost control</strong>, particularly in <strong>smaller,
+low-latitude catchments</strong>.<br />
+This tree provides an interpretable map of how climate and watershed
+geometry together shape baseflow across the Arctic landscape.</p>
 </blockquote>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
 <span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_tree, <span class="at">newdata =</span> test)</span>
@@ -5621,6 +5708,7 @@ complex environmental datasets.</p>
 <span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>    <span class="st">&quot; | R-squared:&quot;</span>, <span class="fu">round</span>(rsq_tree,<span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Decision Tree RMSE: 0.104  | R-squared: 0.32</code></pre>
+</div>
 </div>
 </div>
 <div id="why-go-beyond-a-single-tree" class="section level2">
@@ -5791,14 +5879,11 @@ reduce variation (impurity) when the trees split on it.</li>
 </ul>
 <p>From both measures, we can see that:</p>
 <ul>
-<li><strong>Upstream drainage area</strong> and <strong>mean annual
-temperature</strong> are the most influential predictors.</li>
-<li><strong>Latitude</strong>, <strong>net radiation trend</strong>, and
-<strong>magnetic ground temperature (magt_deg_c)</strong> also play
-strong roles.</li>
-<li>Climate-related predictors (like radiation, temperature change, and
-snow) appear repeatedly — showing that <strong>climate and watershed
-size jointly control groundwater contributions.</strong></li>
+<li><strong>Upstream drainage area</strong> and Temperature and energy
+variables — including <code>mean_annual_temp_deg_c</code>,
+<code>r_net_pct_change_annual</code>, and
+<code>mean_annual_r_net_w_m2</code> highlight the strong role of climate
+and surface energy balance in shaping groundwater contributions.</li>
 </ul>
 <hr />
 <p>In short:</p>
@@ -5952,8 +6037,8 @@ on the test data.</p>
 </tr>
 <tr class="even">
 <td align="left"><strong>Elastic Net</strong></td>
-<td align="center">0.119</td>
-<td align="center">0.108</td>
+<td align="center">0.117</td>
+<td align="center">0.137</td>
 </tr>
 </tbody>
 </table>
