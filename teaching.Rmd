@@ -4,6 +4,14 @@ output: html_document
 ---
 
 
+#### Spring 2026
+
+* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/STT4880SP2021/)
+* [STT 2810 --- Introduction to Statistics](https://asulearn.appstate.edu/)
+
+<!--
+
+
 #### Fall 2025
 
 * [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
@@ -13,7 +21,7 @@ output: html_document
 * [Machine Learning Workshop 2025](mainDoc.html)
 
 
-<!--
+
 #### Fall 2024
 
 * [STT 4830 --- Linear Regression Models](https://hasthika.github.io/STT4830/index.html) 
@@ -91,9 +99,9 @@ output: html_document
 ## **Future Classes**
 
 
-#### Spring 2026 
+#### Fall 2027 
 
-* [STT 4880 --- Mathematical Statistics](https://hasthika.github.io/!STT4880SP2021!/) 
+* On RTL ---  Reassigned Time Leave (a policy allowing tenured faculty dedicated time for research or external activities.) 
 
 
 ## **Steps Toward Success**
